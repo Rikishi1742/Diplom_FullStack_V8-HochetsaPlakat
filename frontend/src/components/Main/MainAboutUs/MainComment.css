@@ -1,0 +1,99 @@
+.Recall {
+    border-style: solid;
+    border-color: #66CC66;
+    border-width: 10px 0px;
+}
+
+.Recall .Comment
+{
+    height: 85%;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    z-index: 1;
+}
+
+
+.Recall h3
+{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    text-align: center;
+
+    margin: 10px;
+
+    color: #66CC66;
+}
+
+.Recall p 
+{
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+
+    color: #000000 !important;
+    margin-bottom: 30px;
+}
+
+.Person {
+    width: 35%;
+    height: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Person img {
+    width: 60%;
+    height: fit-content;
+}
+
+.Person h3 {
+    margin: 0;
+}
+.ComText {
+    width: 50%;
+    height: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ComText p {
+    text-align: justify !important;
+    margin-top: 0;
+}
+
+.Stars {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+}
+
+.Stars img {
+    margin-left: 5px;
+}
+
+@media screen and (max-width: 1300px) {
+    .Recall .Comment {
+        
+    }
+}
+
+@media screen and (max-width: 1000px) {
+
+    .Recall .Comment {
+        
+    }
+
+}

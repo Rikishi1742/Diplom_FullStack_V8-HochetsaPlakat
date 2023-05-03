@@ -1,0 +1,78 @@
+.MainInfoContent
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    width: 100%;
+}
+
+.MainInfoContent div
+{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 50%;
+    width: 45%;
+    align-items: center;
+}
+
+
+.MainInfoContent div h2 {
+    color: #FFFFFF;
+}
+
+.MainInfoContent div p {
+    color: #FFFFFF;
+}
+
+.UL {
+    text-align: left;
+}
+
+.MainInfoContent div ul {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 31px;
+    /* or 136% */
+
+    letter-spacing: 0.09em;
+    color: #FFFFFF;
+}
+
+li {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2vw;
+    line-height: 31px;
+    letter-spacing: 0.04em;
+}
+
+@media screen and (max-width: 1300px) {
+    li {
+    font-size: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    li {
+    font-size: 4vw;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .MainInfoContent {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 80%;
+    }
+    .MainInfoContent div {
+        width: 80%;
+        align-items: start;
+        height: auto;
+    }
+}
+
