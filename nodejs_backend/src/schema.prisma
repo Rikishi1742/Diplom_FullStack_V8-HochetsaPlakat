@@ -25,6 +25,7 @@ model User {
     email    String
     name     String?
     password UserPasswordType?
+    number_of_course_completed String[]
 }
 
 model UserRefreshToken {
@@ -32,13 +33,14 @@ model UserRefreshToken {
     token   String @unique
 }
 
-model Partner {
-    id   String  @id @default(auto()) @map("_id") @db.ObjectId
+model Lesson {
+    lesson_id   String @id @default(auto()) @map("_id") @db.ObjectId
     name String
-    logo String?
+    description String
+    descriptionFull String
+    protectionDescription String
+    prevelance_level Int
+    exploit_ability_level Int
+    impact_level Int
 }
 
-model Project {
-    id   String @id @default(auto()) @map("_id") @db.ObjectId
-    name String
-}

@@ -1,4 +1,3 @@
-export * from "./Partner/args";
-export * from "./Project/args";
+export * from "./Lesson/args";
 export * from "./User/args";
 export * from "./UserRefreshToken/args";

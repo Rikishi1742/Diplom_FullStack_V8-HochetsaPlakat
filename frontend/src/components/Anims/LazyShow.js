@@ -33,10 +33,14 @@ const LazyShow = ({ children }) => {
   const rootRef = useRef();
   const onScreen = useOnScreen(rootRef);
 
+  let dirTop;
+  let diHorizontal;
+
   useEffect(() => {
     if (onScreen) {
       controls.start({
         x: 0,
+        y: 0,
         opacity: 1,
         transition: {
           duration: 1,
@@ -49,7 +53,7 @@ const LazyShow = ({ children }) => {
     <motion.div
       className="lazy-div"
       ref={rootRef}
-      initial={{ opacity: 0, x: -15 }}
+      initial={{ opacity: 0, x: 0, y: 15 }}
       animate={controls}
     >
       {children}

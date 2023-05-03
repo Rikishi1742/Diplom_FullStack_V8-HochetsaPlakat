@@ -55,4 +55,9 @@ export class UserWhereInput {
     nullable: true
   })
   password?: UserPasswordTypeNullableCompositeFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringNullableListFilter, {
+    nullable: true
+  })
+  number_of_course_completed?: StringNullableListFilter | undefined;
 }

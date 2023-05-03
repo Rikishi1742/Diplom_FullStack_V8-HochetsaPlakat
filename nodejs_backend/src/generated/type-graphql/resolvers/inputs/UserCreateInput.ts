@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "../../../client";
 import { DecimalJSScalar } from "../../scalars";
+import { UserCreatenumber_of_course_completedInput } from "../inputs/UserCreatenumber_of_course_completedInput";
 import { UserCreaterolesInput } from "../inputs/UserCreaterolesInput";
 import { UserPasswordTypeNullableCreateEnvelopeInput } from "../inputs/UserPasswordTypeNullableCreateEnvelopeInput";
 
@@ -38,4 +39,9 @@ export class UserCreateInput {
     nullable: true
   })
   password?: UserPasswordTypeNullableCreateEnvelopeInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserCreatenumber_of_course_completedInput, {
+    nullable: true
+  })
+  number_of_course_completed?: UserCreatenumber_of_course_completedInput | undefined;
 }

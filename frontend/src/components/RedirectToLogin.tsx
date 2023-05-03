@@ -29,8 +29,8 @@ function RedirectToLogin({ children }: Props) {
         console.log('LOGIN: decoded', decodedUser, loginStatus);
         setUserDataByDispatch('LOGIN', decodedUser);
         saveTokens(tokens);
+        
     }, [setUserDataByDispatch]);
-
     const logout = useCallback(() => {
         setUserDataByDispatch('LOGOUT', null);
         navigate('/');

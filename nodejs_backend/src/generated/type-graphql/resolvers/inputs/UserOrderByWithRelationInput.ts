@@ -38,4 +38,9 @@ export class UserOrderByWithRelationInput {
     nullable: true
   })
   password?: UserPasswordTypeOrderByInput | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  number_of_course_completed?: "asc" | "desc" | undefined;
 }

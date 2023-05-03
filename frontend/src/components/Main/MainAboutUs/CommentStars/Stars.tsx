@@ -20,6 +20,7 @@ const Stars = props => {
 
     for (let i = 0; i < starsQuantity; i++) {
         StarsElem[i] = <StarEl key={i} />
+
     }
 
     return (

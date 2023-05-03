@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 import { UserPasswordTypeNullableUpdateEnvelopeInput } from "../inputs/UserPasswordTypeNullableUpdateEnvelopeInput";
+import { UserUpdatenumber_of_course_completedInput } from "../inputs/UserUpdatenumber_of_course_completedInput";
 import { UserUpdaterolesInput } from "../inputs/UserUpdaterolesInput";
 
 @TypeGraphQL.InputType("UserUpdateManyMutationInput", {
@@ -35,4 +36,9 @@ export class UserUpdateManyMutationInput {
     nullable: true
   })
   password?: UserPasswordTypeNullableUpdateEnvelopeInput | undefined;
+
+  @TypeGraphQL.Field(_type => UserUpdatenumber_of_course_completedInput, {
+    nullable: true
+  })
+  number_of_course_completed?: UserUpdatenumber_of_course_completedInput | undefined;
 }

@@ -1,0 +1,27 @@
+.LessonSection {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.LessonSection h2 {
+    color: #FFFFFF;
+}
+
+.TestsSection {
+    width: 100%;
+    height: 250px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.LessonSection a {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 250px;
+}

@@ -12,8 +12,8 @@ export type UserPayloadType = {
     email: string
     name: string
     roles: string[]
+    number_of_course_completed: String[]
 };
-
 
 type userContextType = {
     userPayload: UserPayloadType | null,

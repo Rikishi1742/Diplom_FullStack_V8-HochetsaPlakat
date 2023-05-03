@@ -37,4 +37,9 @@ export class User {
     nullable: true
   })
   password?: UserPasswordType | null;
+
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: false
+  })
+  number_of_course_completed!: string[];
 }

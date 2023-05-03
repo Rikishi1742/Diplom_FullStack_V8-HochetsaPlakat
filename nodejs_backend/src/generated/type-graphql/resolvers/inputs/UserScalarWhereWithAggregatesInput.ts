@@ -49,4 +49,9 @@ export class UserScalarWhereWithAggregatesInput {
     nullable: true
   })
   name?: StringNullableWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringNullableListFilter, {
+    nullable: true
+  })
+  number_of_course_completed?: StringNullableListFilter | undefined;
 }

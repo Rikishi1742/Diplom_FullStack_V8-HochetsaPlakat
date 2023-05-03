@@ -25,5 +25,14 @@ mutation Register($userRegisterData: UserRegisterInputType!){
   }
 }`;
 
+export const CREATE_LESSON = gql`
+mutation createOneLesson($data: LessonCreateInput!) {
+
+  createOneLesson(data: $data) {
+      name
+      description
+      question
+    }
+}`; 
 
 

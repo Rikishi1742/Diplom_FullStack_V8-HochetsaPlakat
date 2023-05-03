@@ -1,13 +1,13 @@
-import React from 'react'
 import EducationDescription from '../../components/Education/EducationDescription'
+import Footer from '../../components/Footer/Footer'
 
-type Props = {}
 
-function Education({}: Props) {
+function Education() {
   return (
-    <div className='Container'>
-        <EducationDescription LessonsCount={5}/>
-    </div>
+    <>
+      <EducationDescription />
+      <Footer />
+    </>
   )
 }
 

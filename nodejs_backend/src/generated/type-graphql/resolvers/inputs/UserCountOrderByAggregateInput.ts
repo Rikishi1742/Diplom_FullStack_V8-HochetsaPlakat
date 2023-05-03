@@ -32,4 +32,9 @@ export class UserCountOrderByAggregateInput {
     nullable: true
   })
   name?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  number_of_course_completed?: "asc" | "desc" | undefined;
 }

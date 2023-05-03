@@ -3,6 +3,7 @@
     height: 40%;
     display: flex;
     justify-content: space-between;
+    padding-top: 40px;
 }
 
 .FooterTop div {
@@ -64,3 +65,4 @@
         width: 30%;
     }
 }
+

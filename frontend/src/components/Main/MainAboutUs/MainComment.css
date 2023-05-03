@@ -38,7 +38,7 @@
     font-style: normal !important;
     font-weight: 500 !important;
 
-    color: #000000 !important;
+    color: #2E2E2E !important;
     margin-bottom: 30px;
 }
 
@@ -84,16 +84,24 @@
     margin-left: 5px;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 800px) {
+
     .Recall .Comment {
-        
+        height: auto;
+        flex-direction: column;
     }
-}
 
-@media screen and (max-width: 1000px) {
+    .Person {
+        width: 60%;
+        margin-bottom: 50px;
+    }
 
-    .Recall .Comment {
-        
+    .ComText{
+        width: 80%;
+    }
+
+    .Stars {
+        justify-content: center;
     }
 
 }

@@ -131,16 +131,6 @@ function LoginPage({ }: Props) {
 
               </div>
 
-              
-              
-
-              
-
-              
-
-              
-
-              
         </CForm>
       </div>
     </div>

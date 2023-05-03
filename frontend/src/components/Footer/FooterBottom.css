@@ -74,3 +74,23 @@
 
 }
 
+@media screen and (max-width: 600px) {
+    .FooterBottom {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .FooterBottom .Logo {
+        height: auto;
+        width: 50%;
+    }
+
+    .FooterTopBottom {
+        flex-direction: column;
+    }
+
+    .FooterTopBottom div {
+        width: 100%;
+    }
+
+}

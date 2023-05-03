@@ -86,15 +86,15 @@ Prisma.NullTypes = {
  * Enums
  */
 
-exports.Prisma.PartnerScalarFieldEnum = {
-  id: 'id',
+exports.Prisma.LessonScalarFieldEnum = {
+  lesson_id: 'lesson_id',
   name: 'name',
-  logo: 'logo'
-};
-
-exports.Prisma.ProjectScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
+  description: 'description',
+  descriptionFull: 'descriptionFull',
+  protectionDescription: 'protectionDescription',
+  prevelance_level: 'prevelance_level',
+  exploit_ability_level: 'exploit_ability_level',
+  impact_level: 'impact_level'
 };
 
 exports.Prisma.QueryMode = {
@@ -117,15 +117,15 @@ exports.Prisma.UserScalarFieldEnum = {
   username: 'username',
   roles: 'roles',
   email: 'email',
-  name: 'name'
+  name: 'name',
+  number_of_course_completed: 'number_of_course_completed'
 };
 
 
 exports.Prisma.ModelName = {
   User: 'User',
   UserRefreshToken: 'UserRefreshToken',
-  Partner: 'Partner',
-  Project: 'Project'
+  Lesson: 'Lesson'
 };
 
 /**

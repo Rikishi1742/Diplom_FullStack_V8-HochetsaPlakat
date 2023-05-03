@@ -1,5 +1,4 @@
-export { Partner } from "./Partner";
-export { Project } from "./Project";
+export { Lesson } from "./Lesson";
 export { User } from "./User";
 export { UserPasswordType } from "./UserPasswordType";
 export { UserRefreshToken } from "./UserRefreshToken";

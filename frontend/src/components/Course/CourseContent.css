@@ -1,0 +1,11 @@
+.CourseContent h2 {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 48px !important;
+    line-height: 58px;
+    width: "100%"; 
+    display: "flex"; 
+    justify-Content: "space-between"; 
+    flex-Direction: "column"
+}
+

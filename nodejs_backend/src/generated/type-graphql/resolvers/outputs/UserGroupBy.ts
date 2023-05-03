@@ -35,6 +35,11 @@ export class UserGroupBy {
   })
   name!: string | null;
 
+  @TypeGraphQL.Field(_type => [String], {
+    nullable: true
+  })
+  number_of_course_completed!: string[] | null;
+
   @TypeGraphQL.Field(_type => UserCountAggregate, {
     nullable: true
   })

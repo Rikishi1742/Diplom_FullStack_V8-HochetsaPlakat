@@ -32,6 +32,7 @@ export type User = {
   email: string
   name: string | null
   password: UserPasswordType | null
+  number_of_course_completed: string[]
 }
 
 /**
@@ -44,22 +45,18 @@ export type UserRefreshToken = {
 }
 
 /**
- * Model Partner
+ * Model Lesson
  * 
  */
-export type Partner = {
-  id: string
+export type Lesson = {
+  lesson_id: string
   name: string
-  logo: string | null
-}
-
-/**
- * Model Project
- * 
- */
-export type Project = {
-  id: string
-  name: string
+  description: string
+  descriptionFull: string
+  protectionDescription: string
+  prevelance_level: number
+  exploit_ability_level: number
+  impact_level: number
 }
 
 
@@ -170,24 +167,14 @@ export class PrismaClient<
   get userRefreshToken(): Prisma.UserRefreshTokenDelegate<GlobalReject>;
 
   /**
-   * `prisma.partner`: Exposes CRUD operations for the **Partner** model.
+   * `prisma.lesson`: Exposes CRUD operations for the **Lesson** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Partners
-    * const partners = await prisma.partner.findMany()
+    * // Fetch zero or more Lessons
+    * const lessons = await prisma.lesson.findMany()
     * ```
     */
-  get partner(): Prisma.PartnerDelegate<GlobalReject>;
-
-  /**
-   * `prisma.project`: Exposes CRUD operations for the **Project** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Projects
-    * const projects = await prisma.project.findMany()
-    * ```
-    */
-  get project(): Prisma.ProjectDelegate<GlobalReject>;
+  get lesson(): Prisma.LessonDelegate<GlobalReject>;
 }
 
 export namespace Prisma {
@@ -659,8 +646,7 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     UserRefreshToken: 'UserRefreshToken',
-    Partner: 'Partner',
-    Project: 'Project'
+    Lesson: 'Lesson'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -957,6 +943,7 @@ export namespace Prisma {
     roles: number
     email: number
     name: number
+    number_of_course_completed: number
     _all: number
   }
 
@@ -981,6 +968,7 @@ export namespace Prisma {
     roles?: true
     email?: true
     name?: true
+    number_of_course_completed?: true
     _all?: true
   }
 
@@ -1063,6 +1051,7 @@ export namespace Prisma {
     roles: string[]
     email: string
     name: string | null
+    number_of_course_completed: string[]
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1089,6 +1078,7 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     password?: boolean | UserPasswordTypeArgs
+    number_of_course_completed?: boolean
   }
 
 
@@ -2819,319 +2809,401 @@ export namespace Prisma {
 
 
   /**
-   * Model Partner
+   * Model Lesson
    */
 
 
-  export type AggregatePartner = {
-    _count: PartnerCountAggregateOutputType | null
-    _min: PartnerMinAggregateOutputType | null
-    _max: PartnerMaxAggregateOutputType | null
+  export type AggregateLesson = {
+    _count: LessonCountAggregateOutputType | null
+    _avg: LessonAvgAggregateOutputType | null
+    _sum: LessonSumAggregateOutputType | null
+    _min: LessonMinAggregateOutputType | null
+    _max: LessonMaxAggregateOutputType | null
   }
 
-  export type PartnerMinAggregateOutputType = {
-    id: string | null
+  export type LessonAvgAggregateOutputType = {
+    prevelance_level: number | null
+    exploit_ability_level: number | null
+    impact_level: number | null
+  }
+
+  export type LessonSumAggregateOutputType = {
+    prevelance_level: number | null
+    exploit_ability_level: number | null
+    impact_level: number | null
+  }
+
+  export type LessonMinAggregateOutputType = {
+    lesson_id: string | null
     name: string | null
-    logo: string | null
+    description: string | null
+    descriptionFull: string | null
+    protectionDescription: string | null
+    prevelance_level: number | null
+    exploit_ability_level: number | null
+    impact_level: number | null
   }
 
-  export type PartnerMaxAggregateOutputType = {
-    id: string | null
+  export type LessonMaxAggregateOutputType = {
+    lesson_id: string | null
     name: string | null
-    logo: string | null
+    description: string | null
+    descriptionFull: string | null
+    protectionDescription: string | null
+    prevelance_level: number | null
+    exploit_ability_level: number | null
+    impact_level: number | null
   }
 
-  export type PartnerCountAggregateOutputType = {
-    id: number
+  export type LessonCountAggregateOutputType = {
+    lesson_id: number
     name: number
-    logo: number
+    description: number
+    descriptionFull: number
+    protectionDescription: number
+    prevelance_level: number
+    exploit_ability_level: number
+    impact_level: number
     _all: number
   }
 
 
-  export type PartnerMinAggregateInputType = {
-    id?: true
-    name?: true
-    logo?: true
+  export type LessonAvgAggregateInputType = {
+    prevelance_level?: true
+    exploit_ability_level?: true
+    impact_level?: true
   }
 
-  export type PartnerMaxAggregateInputType = {
-    id?: true
-    name?: true
-    logo?: true
+  export type LessonSumAggregateInputType = {
+    prevelance_level?: true
+    exploit_ability_level?: true
+    impact_level?: true
   }
 
-  export type PartnerCountAggregateInputType = {
-    id?: true
+  export type LessonMinAggregateInputType = {
+    lesson_id?: true
     name?: true
-    logo?: true
+    description?: true
+    descriptionFull?: true
+    protectionDescription?: true
+    prevelance_level?: true
+    exploit_ability_level?: true
+    impact_level?: true
+  }
+
+  export type LessonMaxAggregateInputType = {
+    lesson_id?: true
+    name?: true
+    description?: true
+    descriptionFull?: true
+    protectionDescription?: true
+    prevelance_level?: true
+    exploit_ability_level?: true
+    impact_level?: true
+  }
+
+  export type LessonCountAggregateInputType = {
+    lesson_id?: true
+    name?: true
+    description?: true
+    descriptionFull?: true
+    protectionDescription?: true
+    prevelance_level?: true
+    exploit_ability_level?: true
+    impact_level?: true
     _all?: true
   }
 
-  export type PartnerAggregateArgs = {
+  export type LessonAggregateArgs = {
     /**
-     * Filter which Partner to aggregate.
+     * Filter which Lesson to aggregate.
      */
-    where?: PartnerWhereInput
+    where?: LessonWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Partners to fetch.
+     * Determine the order of Lessons to fetch.
      */
-    orderBy?: Enumerable<PartnerOrderByWithRelationInput>
+    orderBy?: Enumerable<LessonOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: PartnerWhereUniqueInput
+    cursor?: LessonWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Partners from the position of the cursor.
+     * Take `±n` Lessons from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Partners.
+     * Skip the first `n` Lessons.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Partners
+     * Count returned Lessons
     **/
-    _count?: true | PartnerCountAggregateInputType
+    _count?: true | LessonCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LessonAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LessonSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: PartnerMinAggregateInputType
+    _min?: LessonMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: PartnerMaxAggregateInputType
+    _max?: LessonMaxAggregateInputType
   }
 
-  export type GetPartnerAggregateType<T extends PartnerAggregateArgs> = {
-        [P in keyof T & keyof AggregatePartner]: P extends '_count' | 'count'
+  export type GetLessonAggregateType<T extends LessonAggregateArgs> = {
+        [P in keyof T & keyof AggregateLesson]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregatePartner[P]>
-      : GetScalarType<T[P], AggregatePartner[P]>
+        : GetScalarType<T[P], AggregateLesson[P]>
+      : GetScalarType<T[P], AggregateLesson[P]>
   }
 
 
 
 
-  export type PartnerGroupByArgs = {
-    where?: PartnerWhereInput
-    orderBy?: Enumerable<PartnerOrderByWithAggregationInput>
-    by: PartnerScalarFieldEnum[]
-    having?: PartnerScalarWhereWithAggregatesInput
+  export type LessonGroupByArgs = {
+    where?: LessonWhereInput
+    orderBy?: Enumerable<LessonOrderByWithAggregationInput>
+    by: LessonScalarFieldEnum[]
+    having?: LessonScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: PartnerCountAggregateInputType | true
-    _min?: PartnerMinAggregateInputType
-    _max?: PartnerMaxAggregateInputType
+    _count?: LessonCountAggregateInputType | true
+    _avg?: LessonAvgAggregateInputType
+    _sum?: LessonSumAggregateInputType
+    _min?: LessonMinAggregateInputType
+    _max?: LessonMaxAggregateInputType
   }
 
 
-  export type PartnerGroupByOutputType = {
-    id: string
+  export type LessonGroupByOutputType = {
+    lesson_id: string
     name: string
-    logo: string | null
-    _count: PartnerCountAggregateOutputType | null
-    _min: PartnerMinAggregateOutputType | null
-    _max: PartnerMaxAggregateOutputType | null
+    description: string
+    descriptionFull: string
+    protectionDescription: string
+    prevelance_level: number
+    exploit_ability_level: number
+    impact_level: number
+    _count: LessonCountAggregateOutputType | null
+    _avg: LessonAvgAggregateOutputType | null
+    _sum: LessonSumAggregateOutputType | null
+    _min: LessonMinAggregateOutputType | null
+    _max: LessonMaxAggregateOutputType | null
   }
 
-  type GetPartnerGroupByPayload<T extends PartnerGroupByArgs> = Prisma.PrismaPromise<
+  type GetLessonGroupByPayload<T extends LessonGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickArray<PartnerGroupByOutputType, T['by']> &
+      PickArray<LessonGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof PartnerGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof LessonGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], PartnerGroupByOutputType[P]>
-            : GetScalarType<T[P], PartnerGroupByOutputType[P]>
+              : GetScalarType<T[P], LessonGroupByOutputType[P]>
+            : GetScalarType<T[P], LessonGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type PartnerSelect = {
-    id?: boolean
+  export type LessonSelect = {
+    lesson_id?: boolean
     name?: boolean
-    logo?: boolean
+    description?: boolean
+    descriptionFull?: boolean
+    protectionDescription?: boolean
+    prevelance_level?: boolean
+    exploit_ability_level?: boolean
+    impact_level?: boolean
   }
 
 
-  export type PartnerGetPayload<S extends boolean | null | undefined | PartnerArgs> =
+  export type LessonGetPayload<S extends boolean | null | undefined | LessonArgs> =
     S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
-    S extends true ? Partner :
+    S extends true ? Lesson :
     S extends undefined ? never :
-    S extends { include: any } & (PartnerArgs | PartnerFindManyArgs)
-    ? Partner 
-    : S extends { select: any } & (PartnerArgs | PartnerFindManyArgs)
+    S extends { include: any } & (LessonArgs | LessonFindManyArgs)
+    ? Lesson 
+    : S extends { select: any } & (LessonArgs | LessonFindManyArgs)
       ? {
     [P in TruthyKeys<S['select']>]:
-    P extends keyof Partner ? Partner[P] : never
+    P extends keyof Lesson ? Lesson[P] : never
   } 
-      : Partner
+      : Lesson
 
 
-  type PartnerCountArgs = 
-    Omit<PartnerFindManyArgs, 'select' | 'include'> & {
-      select?: PartnerCountAggregateInputType | true
+  type LessonCountArgs = 
+    Omit<LessonFindManyArgs, 'select' | 'include'> & {
+      select?: LessonCountAggregateInputType | true
     }
 
-  export interface PartnerDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+  export interface LessonDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
 
     /**
-     * Find zero or one Partner that matches the filter.
-     * @param {PartnerFindUniqueArgs} args - Arguments to find a Partner
+     * Find zero or one Lesson that matches the filter.
+     * @param {LessonFindUniqueArgs} args - Arguments to find a Lesson
      * @example
-     * // Get one Partner
-     * const partner = await prisma.partner.findUnique({
+     * // Get one Lesson
+     * const lesson = await prisma.lesson.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends PartnerFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, PartnerFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Partner'> extends True ? Prisma__PartnerClient<PartnerGetPayload<T>> : Prisma__PartnerClient<PartnerGetPayload<T> | null, null>
+    findUnique<T extends LessonFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, LessonFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Lesson'> extends True ? Prisma__LessonClient<LessonGetPayload<T>> : Prisma__LessonClient<LessonGetPayload<T> | null, null>
 
     /**
-     * Find one Partner that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one Lesson that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {PartnerFindUniqueOrThrowArgs} args - Arguments to find a Partner
+     * @param {LessonFindUniqueOrThrowArgs} args - Arguments to find a Lesson
      * @example
-     * // Get one Partner
-     * const partner = await prisma.partner.findUniqueOrThrow({
+     * // Get one Lesson
+     * const lesson = await prisma.lesson.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends PartnerFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, PartnerFindUniqueOrThrowArgs>
-    ): Prisma__PartnerClient<PartnerGetPayload<T>>
+    findUniqueOrThrow<T extends LessonFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, LessonFindUniqueOrThrowArgs>
+    ): Prisma__LessonClient<LessonGetPayload<T>>
 
     /**
-     * Find the first Partner that matches the filter.
+     * Find the first Lesson that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PartnerFindFirstArgs} args - Arguments to find a Partner
+     * @param {LessonFindFirstArgs} args - Arguments to find a Lesson
      * @example
-     * // Get one Partner
-     * const partner = await prisma.partner.findFirst({
+     * // Get one Lesson
+     * const lesson = await prisma.lesson.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends PartnerFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, PartnerFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Partner'> extends True ? Prisma__PartnerClient<PartnerGetPayload<T>> : Prisma__PartnerClient<PartnerGetPayload<T> | null, null>
+    findFirst<T extends LessonFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, LessonFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Lesson'> extends True ? Prisma__LessonClient<LessonGetPayload<T>> : Prisma__LessonClient<LessonGetPayload<T> | null, null>
 
     /**
-     * Find the first Partner that matches the filter or
+     * Find the first Lesson that matches the filter or
      * throw `NotFoundError` if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PartnerFindFirstOrThrowArgs} args - Arguments to find a Partner
+     * @param {LessonFindFirstOrThrowArgs} args - Arguments to find a Lesson
      * @example
-     * // Get one Partner
-     * const partner = await prisma.partner.findFirstOrThrow({
+     * // Get one Lesson
+     * const lesson = await prisma.lesson.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends PartnerFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, PartnerFindFirstOrThrowArgs>
-    ): Prisma__PartnerClient<PartnerGetPayload<T>>
+    findFirstOrThrow<T extends LessonFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, LessonFindFirstOrThrowArgs>
+    ): Prisma__LessonClient<LessonGetPayload<T>>
 
     /**
-     * Find zero or more Partners that matches the filter.
+     * Find zero or more Lessons that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PartnerFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {LessonFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Partners
-     * const partners = await prisma.partner.findMany()
+     * // Get all Lessons
+     * const lessons = await prisma.lesson.findMany()
      * 
-     * // Get first 10 Partners
-     * const partners = await prisma.partner.findMany({ take: 10 })
+     * // Get first 10 Lessons
+     * const lessons = await prisma.lesson.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const partnerWithIdOnly = await prisma.partner.findMany({ select: { id: true } })
+     * // Only select the `lesson_id`
+     * const lessonWithLesson_idOnly = await prisma.lesson.findMany({ select: { lesson_id: true } })
      * 
     **/
-    findMany<T extends PartnerFindManyArgs>(
-      args?: SelectSubset<T, PartnerFindManyArgs>
-    ): Prisma.PrismaPromise<Array<PartnerGetPayload<T>>>
+    findMany<T extends LessonFindManyArgs>(
+      args?: SelectSubset<T, LessonFindManyArgs>
+    ): Prisma.PrismaPromise<Array<LessonGetPayload<T>>>
 
     /**
-     * Create a Partner.
-     * @param {PartnerCreateArgs} args - Arguments to create a Partner.
+     * Create a Lesson.
+     * @param {LessonCreateArgs} args - Arguments to create a Lesson.
      * @example
-     * // Create one Partner
-     * const Partner = await prisma.partner.create({
+     * // Create one Lesson
+     * const Lesson = await prisma.lesson.create({
      *   data: {
-     *     // ... data to create a Partner
+     *     // ... data to create a Lesson
      *   }
      * })
      * 
     **/
-    create<T extends PartnerCreateArgs>(
-      args: SelectSubset<T, PartnerCreateArgs>
-    ): Prisma__PartnerClient<PartnerGetPayload<T>>
+    create<T extends LessonCreateArgs>(
+      args: SelectSubset<T, LessonCreateArgs>
+    ): Prisma__LessonClient<LessonGetPayload<T>>
 
     /**
-     * Create many Partners.
-     *     @param {PartnerCreateManyArgs} args - Arguments to create many Partners.
+     * Create many Lessons.
+     *     @param {LessonCreateManyArgs} args - Arguments to create many Lessons.
      *     @example
-     *     // Create many Partners
-     *     const partner = await prisma.partner.createMany({
+     *     // Create many Lessons
+     *     const lesson = await prisma.lesson.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends PartnerCreateManyArgs>(
-      args?: SelectSubset<T, PartnerCreateManyArgs>
+    createMany<T extends LessonCreateManyArgs>(
+      args?: SelectSubset<T, LessonCreateManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Partner.
-     * @param {PartnerDeleteArgs} args - Arguments to delete one Partner.
+     * Delete a Lesson.
+     * @param {LessonDeleteArgs} args - Arguments to delete one Lesson.
      * @example
-     * // Delete one Partner
-     * const Partner = await prisma.partner.delete({
+     * // Delete one Lesson
+     * const Lesson = await prisma.lesson.delete({
      *   where: {
-     *     // ... filter to delete one Partner
+     *     // ... filter to delete one Lesson
      *   }
      * })
      * 
     **/
-    delete<T extends PartnerDeleteArgs>(
-      args: SelectSubset<T, PartnerDeleteArgs>
-    ): Prisma__PartnerClient<PartnerGetPayload<T>>
+    delete<T extends LessonDeleteArgs>(
+      args: SelectSubset<T, LessonDeleteArgs>
+    ): Prisma__LessonClient<LessonGetPayload<T>>
 
     /**
-     * Update one Partner.
-     * @param {PartnerUpdateArgs} args - Arguments to update one Partner.
+     * Update one Lesson.
+     * @param {LessonUpdateArgs} args - Arguments to update one Lesson.
      * @example
-     * // Update one Partner
-     * const partner = await prisma.partner.update({
+     * // Update one Lesson
+     * const lesson = await prisma.lesson.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3141,34 +3213,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends PartnerUpdateArgs>(
-      args: SelectSubset<T, PartnerUpdateArgs>
-    ): Prisma__PartnerClient<PartnerGetPayload<T>>
+    update<T extends LessonUpdateArgs>(
+      args: SelectSubset<T, LessonUpdateArgs>
+    ): Prisma__LessonClient<LessonGetPayload<T>>
 
     /**
-     * Delete zero or more Partners.
-     * @param {PartnerDeleteManyArgs} args - Arguments to filter Partners to delete.
+     * Delete zero or more Lessons.
+     * @param {LessonDeleteManyArgs} args - Arguments to filter Lessons to delete.
      * @example
-     * // Delete a few Partners
-     * const { count } = await prisma.partner.deleteMany({
+     * // Delete a few Lessons
+     * const { count } = await prisma.lesson.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends PartnerDeleteManyArgs>(
-      args?: SelectSubset<T, PartnerDeleteManyArgs>
+    deleteMany<T extends LessonDeleteManyArgs>(
+      args?: SelectSubset<T, LessonDeleteManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Partners.
+     * Update zero or more Lessons.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PartnerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {LessonUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Partners
-     * const partner = await prisma.partner.updateMany({
+     * // Update many Lessons
+     * const lesson = await prisma.lesson.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3178,48 +3250,48 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends PartnerUpdateManyArgs>(
-      args: SelectSubset<T, PartnerUpdateManyArgs>
+    updateMany<T extends LessonUpdateManyArgs>(
+      args: SelectSubset<T, LessonUpdateManyArgs>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Partner.
-     * @param {PartnerUpsertArgs} args - Arguments to update or create a Partner.
+     * Create or update one Lesson.
+     * @param {LessonUpsertArgs} args - Arguments to update or create a Lesson.
      * @example
-     * // Update or create a Partner
-     * const partner = await prisma.partner.upsert({
+     * // Update or create a Lesson
+     * const lesson = await prisma.lesson.upsert({
      *   create: {
-     *     // ... data to create a Partner
+     *     // ... data to create a Lesson
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Partner we want to update
+     *     // ... the filter for the Lesson we want to update
      *   }
      * })
     **/
-    upsert<T extends PartnerUpsertArgs>(
-      args: SelectSubset<T, PartnerUpsertArgs>
-    ): Prisma__PartnerClient<PartnerGetPayload<T>>
+    upsert<T extends LessonUpsertArgs>(
+      args: SelectSubset<T, LessonUpsertArgs>
+    ): Prisma__LessonClient<LessonGetPayload<T>>
 
     /**
-     * Find zero or more Partners that matches the filter.
-     * @param {PartnerFindRawArgs} args - Select which filters you would like to apply.
+     * Find zero or more Lessons that matches the filter.
+     * @param {LessonFindRawArgs} args - Select which filters you would like to apply.
      * @example
-     * const partner = await prisma.partner.findRaw({
+     * const lesson = await prisma.lesson.findRaw({
      *   filter: { age: { $gt: 25 } } 
      * })
     **/
     findRaw(
-      args?: PartnerFindRawArgs
+      args?: LessonFindRawArgs
     ): Prisma.PrismaPromise<JsonObject>
 
     /**
-     * Perform aggregation operations on a Partner.
-     * @param {PartnerAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * Perform aggregation operations on a Lesson.
+     * @param {LessonAggregateRawArgs} args - Select which aggregations you would like to apply.
      * @example
-     * const partner = await prisma.partner.aggregateRaw({
+     * const lesson = await prisma.lesson.aggregateRaw({
      *   pipeline: [
      *     { $match: { status: "registered" } },
      *     { $group: { _id: "$country", total: { $sum: 1 } } }
@@ -3227,37 +3299,37 @@ export namespace Prisma {
      * })
     **/
     aggregateRaw(
-      args?: PartnerAggregateRawArgs
+      args?: LessonAggregateRawArgs
     ): Prisma.PrismaPromise<JsonObject>
 
     /**
-     * Count the number of Partners.
+     * Count the number of Lessons.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PartnerCountArgs} args - Arguments to filter Partners to count.
+     * @param {LessonCountArgs} args - Arguments to filter Lessons to count.
      * @example
-     * // Count the number of Partners
-     * const count = await prisma.partner.count({
+     * // Count the number of Lessons
+     * const count = await prisma.lesson.count({
      *   where: {
-     *     // ... the filter for the Partners we want to count
+     *     // ... the filter for the Lessons we want to count
      *   }
      * })
     **/
-    count<T extends PartnerCountArgs>(
-      args?: Subset<T, PartnerCountArgs>,
+    count<T extends LessonCountArgs>(
+      args?: Subset<T, LessonCountArgs>,
     ): Prisma.PrismaPromise<
       T extends _Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], PartnerCountAggregateOutputType>
+          : GetScalarType<T['select'], LessonCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Partner.
+     * Allows you to perform aggregations operations on a Lesson.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PartnerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {LessonAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -3277,13 +3349,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends PartnerAggregateArgs>(args: Subset<T, PartnerAggregateArgs>): Prisma.PrismaPromise<GetPartnerAggregateType<T>>
+    aggregate<T extends LessonAggregateArgs>(args: Subset<T, LessonAggregateArgs>): Prisma.PrismaPromise<GetLessonAggregateType<T>>
 
     /**
-     * Group by Partner.
+     * Group by Lesson.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PartnerGroupByArgs} args - Group by arguments.
+     * @param {LessonGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -3298,14 +3370,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends PartnerGroupByArgs,
+      T extends LessonGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PartnerGroupByArgs['orderBy'] }
-        : { orderBy?: PartnerGroupByArgs['orderBy'] },
+        ? { orderBy: LessonGroupByArgs['orderBy'] }
+        : { orderBy?: LessonGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends TupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -3354,17 +3426,17 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, PartnerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPartnerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, LessonGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLessonGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Partner.
+   * The delegate class that acts as a "Promise-like" for Lesson.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__PartnerClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+  export class Prisma__LessonClient<T, Null = never> implements Prisma.PrismaPromise<T> {
     private readonly _dmmf;
     private readonly _queryType;
     private readonly _rootField;
@@ -3408,23 +3480,23 @@ export namespace Prisma {
   // Custom InputTypes
 
   /**
-   * Partner base type for findUnique actions
+   * Lesson base type for findUnique actions
    */
-  export type PartnerFindUniqueArgsBase = {
+  export type LessonFindUniqueArgsBase = {
     /**
-     * Select specific fields to fetch from the Partner
+     * Select specific fields to fetch from the Lesson
      */
-    select?: PartnerSelect | null
+    select?: LessonSelect | null
     /**
-     * Filter, which Partner to fetch.
+     * Filter, which Lesson to fetch.
      */
-    where: PartnerWhereUniqueInput
+    where: LessonWhereUniqueInput
   }
 
   /**
-   * Partner findUnique
+   * Lesson findUnique
    */
-  export interface PartnerFindUniqueArgs extends PartnerFindUniqueArgsBase {
+  export interface LessonFindUniqueArgs extends LessonFindUniqueArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
@@ -3434,68 +3506,68 @@ export namespace Prisma {
       
 
   /**
-   * Partner findUniqueOrThrow
+   * Lesson findUniqueOrThrow
    */
-  export type PartnerFindUniqueOrThrowArgs = {
+  export type LessonFindUniqueOrThrowArgs = {
     /**
-     * Select specific fields to fetch from the Partner
+     * Select specific fields to fetch from the Lesson
      */
-    select?: PartnerSelect | null
+    select?: LessonSelect | null
     /**
-     * Filter, which Partner to fetch.
+     * Filter, which Lesson to fetch.
      */
-    where: PartnerWhereUniqueInput
+    where: LessonWhereUniqueInput
   }
 
 
   /**
-   * Partner base type for findFirst actions
+   * Lesson base type for findFirst actions
    */
-  export type PartnerFindFirstArgsBase = {
+  export type LessonFindFirstArgsBase = {
     /**
-     * Select specific fields to fetch from the Partner
+     * Select specific fields to fetch from the Lesson
      */
-    select?: PartnerSelect | null
+    select?: LessonSelect | null
     /**
-     * Filter, which Partner to fetch.
+     * Filter, which Lesson to fetch.
      */
-    where?: PartnerWhereInput
+    where?: LessonWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Partners to fetch.
+     * Determine the order of Lessons to fetch.
      */
-    orderBy?: Enumerable<PartnerOrderByWithRelationInput>
+    orderBy?: Enumerable<LessonOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Partners.
+     * Sets the position for searching for Lessons.
      */
-    cursor?: PartnerWhereUniqueInput
+    cursor?: LessonWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Partners from the position of the cursor.
+     * Take `±n` Lessons from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Partners.
+     * Skip the first `n` Lessons.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Partners.
+     * Filter by unique combinations of Lessons.
      */
-    distinct?: Enumerable<PartnerScalarFieldEnum>
+    distinct?: Enumerable<LessonScalarFieldEnum>
   }
 
   /**
-   * Partner findFirst
+   * Lesson findFirst
    */
-  export interface PartnerFindFirstArgs extends PartnerFindFirstArgsBase {
+  export interface LessonFindFirstArgs extends LessonFindFirstArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
@@ -3505,203 +3577,203 @@ export namespace Prisma {
       
 
   /**
-   * Partner findFirstOrThrow
+   * Lesson findFirstOrThrow
    */
-  export type PartnerFindFirstOrThrowArgs = {
+  export type LessonFindFirstOrThrowArgs = {
     /**
-     * Select specific fields to fetch from the Partner
+     * Select specific fields to fetch from the Lesson
      */
-    select?: PartnerSelect | null
+    select?: LessonSelect | null
     /**
-     * Filter, which Partner to fetch.
+     * Filter, which Lesson to fetch.
      */
-    where?: PartnerWhereInput
+    where?: LessonWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Partners to fetch.
+     * Determine the order of Lessons to fetch.
      */
-    orderBy?: Enumerable<PartnerOrderByWithRelationInput>
+    orderBy?: Enumerable<LessonOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Partners.
+     * Sets the position for searching for Lessons.
      */
-    cursor?: PartnerWhereUniqueInput
+    cursor?: LessonWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Partners from the position of the cursor.
+     * Take `±n` Lessons from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Partners.
+     * Skip the first `n` Lessons.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Partners.
+     * Filter by unique combinations of Lessons.
      */
-    distinct?: Enumerable<PartnerScalarFieldEnum>
+    distinct?: Enumerable<LessonScalarFieldEnum>
   }
 
 
   /**
-   * Partner findMany
+   * Lesson findMany
    */
-  export type PartnerFindManyArgs = {
+  export type LessonFindManyArgs = {
     /**
-     * Select specific fields to fetch from the Partner
+     * Select specific fields to fetch from the Lesson
      */
-    select?: PartnerSelect | null
+    select?: LessonSelect | null
     /**
-     * Filter, which Partners to fetch.
+     * Filter, which Lessons to fetch.
      */
-    where?: PartnerWhereInput
+    where?: LessonWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Partners to fetch.
+     * Determine the order of Lessons to fetch.
      */
-    orderBy?: Enumerable<PartnerOrderByWithRelationInput>
+    orderBy?: Enumerable<LessonOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Partners.
+     * Sets the position for listing Lessons.
      */
-    cursor?: PartnerWhereUniqueInput
+    cursor?: LessonWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Partners from the position of the cursor.
+     * Take `±n` Lessons from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Partners.
+     * Skip the first `n` Lessons.
      */
     skip?: number
-    distinct?: Enumerable<PartnerScalarFieldEnum>
+    distinct?: Enumerable<LessonScalarFieldEnum>
   }
 
 
   /**
-   * Partner create
+   * Lesson create
    */
-  export type PartnerCreateArgs = {
+  export type LessonCreateArgs = {
     /**
-     * Select specific fields to fetch from the Partner
+     * Select specific fields to fetch from the Lesson
      */
-    select?: PartnerSelect | null
+    select?: LessonSelect | null
     /**
-     * The data needed to create a Partner.
+     * The data needed to create a Lesson.
      */
-    data: XOR<PartnerCreateInput, PartnerUncheckedCreateInput>
+    data: XOR<LessonCreateInput, LessonUncheckedCreateInput>
   }
 
 
   /**
-   * Partner createMany
+   * Lesson createMany
    */
-  export type PartnerCreateManyArgs = {
+  export type LessonCreateManyArgs = {
     /**
-     * The data used to create many Partners.
+     * The data used to create many Lessons.
      */
-    data: Enumerable<PartnerCreateManyInput>
+    data: Enumerable<LessonCreateManyInput>
   }
 
 
   /**
-   * Partner update
+   * Lesson update
    */
-  export type PartnerUpdateArgs = {
+  export type LessonUpdateArgs = {
     /**
-     * Select specific fields to fetch from the Partner
+     * Select specific fields to fetch from the Lesson
      */
-    select?: PartnerSelect | null
+    select?: LessonSelect | null
     /**
-     * The data needed to update a Partner.
+     * The data needed to update a Lesson.
      */
-    data: XOR<PartnerUpdateInput, PartnerUncheckedUpdateInput>
+    data: XOR<LessonUpdateInput, LessonUncheckedUpdateInput>
     /**
-     * Choose, which Partner to update.
+     * Choose, which Lesson to update.
      */
-    where: PartnerWhereUniqueInput
+    where: LessonWhereUniqueInput
   }
 
 
   /**
-   * Partner updateMany
+   * Lesson updateMany
    */
-  export type PartnerUpdateManyArgs = {
+  export type LessonUpdateManyArgs = {
     /**
-     * The data used to update Partners.
+     * The data used to update Lessons.
      */
-    data: XOR<PartnerUpdateManyMutationInput, PartnerUncheckedUpdateManyInput>
+    data: XOR<LessonUpdateManyMutationInput, LessonUncheckedUpdateManyInput>
     /**
-     * Filter which Partners to update
+     * Filter which Lessons to update
      */
-    where?: PartnerWhereInput
+    where?: LessonWhereInput
   }
 
 
   /**
-   * Partner upsert
+   * Lesson upsert
    */
-  export type PartnerUpsertArgs = {
+  export type LessonUpsertArgs = {
     /**
-     * Select specific fields to fetch from the Partner
+     * Select specific fields to fetch from the Lesson
      */
-    select?: PartnerSelect | null
+    select?: LessonSelect | null
     /**
-     * The filter to search for the Partner to update in case it exists.
+     * The filter to search for the Lesson to update in case it exists.
      */
-    where: PartnerWhereUniqueInput
+    where: LessonWhereUniqueInput
     /**
-     * In case the Partner found by the `where` argument doesn't exist, create a new Partner with this data.
+     * In case the Lesson found by the `where` argument doesn't exist, create a new Lesson with this data.
      */
-    create: XOR<PartnerCreateInput, PartnerUncheckedCreateInput>
+    create: XOR<LessonCreateInput, LessonUncheckedCreateInput>
     /**
-     * In case the Partner was found with the provided `where` argument, update it with this data.
+     * In case the Lesson was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<PartnerUpdateInput, PartnerUncheckedUpdateInput>
+    update: XOR<LessonUpdateInput, LessonUncheckedUpdateInput>
   }
 
 
   /**
-   * Partner delete
+   * Lesson delete
    */
-  export type PartnerDeleteArgs = {
+  export type LessonDeleteArgs = {
     /**
-     * Select specific fields to fetch from the Partner
+     * Select specific fields to fetch from the Lesson
      */
-    select?: PartnerSelect | null
+    select?: LessonSelect | null
     /**
-     * Filter which Partner to delete.
+     * Filter which Lesson to delete.
      */
-    where: PartnerWhereUniqueInput
+    where: LessonWhereUniqueInput
   }
 
 
   /**
-   * Partner deleteMany
+   * Lesson deleteMany
    */
-  export type PartnerDeleteManyArgs = {
+  export type LessonDeleteManyArgs = {
     /**
-     * Filter which Partners to delete
+     * Filter which Lessons to delete
      */
-    where?: PartnerWhereInput
+    where?: LessonWhereInput
   }
 
 
   /**
-   * Partner findRaw
+   * Lesson findRaw
    */
-  export type PartnerFindRawArgs = {
+  export type LessonFindRawArgs = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -3714,9 +3786,9 @@ export namespace Prisma {
 
 
   /**
-   * Partner aggregateRaw
+   * Lesson aggregateRaw
    */
-  export type PartnerAggregateRawArgs = {
+  export type LessonAggregateRawArgs = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -3729,927 +3801,13 @@ export namespace Prisma {
 
 
   /**
-   * Partner without action
+   * Lesson without action
    */
-  export type PartnerArgs = {
+  export type LessonArgs = {
     /**
-     * Select specific fields to fetch from the Partner
+     * Select specific fields to fetch from the Lesson
      */
-    select?: PartnerSelect | null
-  }
-
-
-
-  /**
-   * Model Project
-   */
-
-
-  export type AggregateProject = {
-    _count: ProjectCountAggregateOutputType | null
-    _min: ProjectMinAggregateOutputType | null
-    _max: ProjectMaxAggregateOutputType | null
-  }
-
-  export type ProjectMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-  }
-
-  export type ProjectMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-  }
-
-  export type ProjectCountAggregateOutputType = {
-    id: number
-    name: number
-    _all: number
-  }
-
-
-  export type ProjectMinAggregateInputType = {
-    id?: true
-    name?: true
-  }
-
-  export type ProjectMaxAggregateInputType = {
-    id?: true
-    name?: true
-  }
-
-  export type ProjectCountAggregateInputType = {
-    id?: true
-    name?: true
-    _all?: true
-  }
-
-  export type ProjectAggregateArgs = {
-    /**
-     * Filter which Project to aggregate.
-     */
-    where?: ProjectWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Projects to fetch.
-     */
-    orderBy?: Enumerable<ProjectOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ProjectWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Projects from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Projects.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Projects
-    **/
-    _count?: true | ProjectCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ProjectMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ProjectMaxAggregateInputType
-  }
-
-  export type GetProjectAggregateType<T extends ProjectAggregateArgs> = {
-        [P in keyof T & keyof AggregateProject]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateProject[P]>
-      : GetScalarType<T[P], AggregateProject[P]>
-  }
-
-
-
-
-  export type ProjectGroupByArgs = {
-    where?: ProjectWhereInput
-    orderBy?: Enumerable<ProjectOrderByWithAggregationInput>
-    by: ProjectScalarFieldEnum[]
-    having?: ProjectScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ProjectCountAggregateInputType | true
-    _min?: ProjectMinAggregateInputType
-    _max?: ProjectMaxAggregateInputType
-  }
-
-
-  export type ProjectGroupByOutputType = {
-    id: string
-    name: string
-    _count: ProjectCountAggregateOutputType | null
-    _min: ProjectMinAggregateOutputType | null
-    _max: ProjectMaxAggregateOutputType | null
-  }
-
-  type GetProjectGroupByPayload<T extends ProjectGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickArray<ProjectGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ProjectGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ProjectGroupByOutputType[P]>
-            : GetScalarType<T[P], ProjectGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ProjectSelect = {
-    id?: boolean
-    name?: boolean
-  }
-
-
-  export type ProjectGetPayload<S extends boolean | null | undefined | ProjectArgs> =
-    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
-    S extends true ? Project :
-    S extends undefined ? never :
-    S extends { include: any } & (ProjectArgs | ProjectFindManyArgs)
-    ? Project 
-    : S extends { select: any } & (ProjectArgs | ProjectFindManyArgs)
-      ? {
-    [P in TruthyKeys<S['select']>]:
-    P extends keyof Project ? Project[P] : never
-  } 
-      : Project
-
-
-  type ProjectCountArgs = 
-    Omit<ProjectFindManyArgs, 'select' | 'include'> & {
-      select?: ProjectCountAggregateInputType | true
-    }
-
-  export interface ProjectDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
-
-    /**
-     * Find zero or one Project that matches the filter.
-     * @param {ProjectFindUniqueArgs} args - Arguments to find a Project
-     * @example
-     * // Get one Project
-     * const project = await prisma.project.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends ProjectFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, ProjectFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Project'> extends True ? Prisma__ProjectClient<ProjectGetPayload<T>> : Prisma__ProjectClient<ProjectGetPayload<T> | null, null>
-
-    /**
-     * Find one Project that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {ProjectFindUniqueOrThrowArgs} args - Arguments to find a Project
-     * @example
-     * // Get one Project
-     * const project = await prisma.project.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends ProjectFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, ProjectFindUniqueOrThrowArgs>
-    ): Prisma__ProjectClient<ProjectGetPayload<T>>
-
-    /**
-     * Find the first Project that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProjectFindFirstArgs} args - Arguments to find a Project
-     * @example
-     * // Get one Project
-     * const project = await prisma.project.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends ProjectFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, ProjectFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Project'> extends True ? Prisma__ProjectClient<ProjectGetPayload<T>> : Prisma__ProjectClient<ProjectGetPayload<T> | null, null>
-
-    /**
-     * Find the first Project that matches the filter or
-     * throw `NotFoundError` if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProjectFindFirstOrThrowArgs} args - Arguments to find a Project
-     * @example
-     * // Get one Project
-     * const project = await prisma.project.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends ProjectFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, ProjectFindFirstOrThrowArgs>
-    ): Prisma__ProjectClient<ProjectGetPayload<T>>
-
-    /**
-     * Find zero or more Projects that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProjectFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Projects
-     * const projects = await prisma.project.findMany()
-     * 
-     * // Get first 10 Projects
-     * const projects = await prisma.project.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const projectWithIdOnly = await prisma.project.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends ProjectFindManyArgs>(
-      args?: SelectSubset<T, ProjectFindManyArgs>
-    ): Prisma.PrismaPromise<Array<ProjectGetPayload<T>>>
-
-    /**
-     * Create a Project.
-     * @param {ProjectCreateArgs} args - Arguments to create a Project.
-     * @example
-     * // Create one Project
-     * const Project = await prisma.project.create({
-     *   data: {
-     *     // ... data to create a Project
-     *   }
-     * })
-     * 
-    **/
-    create<T extends ProjectCreateArgs>(
-      args: SelectSubset<T, ProjectCreateArgs>
-    ): Prisma__ProjectClient<ProjectGetPayload<T>>
-
-    /**
-     * Create many Projects.
-     *     @param {ProjectCreateManyArgs} args - Arguments to create many Projects.
-     *     @example
-     *     // Create many Projects
-     *     const project = await prisma.project.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends ProjectCreateManyArgs>(
-      args?: SelectSubset<T, ProjectCreateManyArgs>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Project.
-     * @param {ProjectDeleteArgs} args - Arguments to delete one Project.
-     * @example
-     * // Delete one Project
-     * const Project = await prisma.project.delete({
-     *   where: {
-     *     // ... filter to delete one Project
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends ProjectDeleteArgs>(
-      args: SelectSubset<T, ProjectDeleteArgs>
-    ): Prisma__ProjectClient<ProjectGetPayload<T>>
-
-    /**
-     * Update one Project.
-     * @param {ProjectUpdateArgs} args - Arguments to update one Project.
-     * @example
-     * // Update one Project
-     * const project = await prisma.project.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends ProjectUpdateArgs>(
-      args: SelectSubset<T, ProjectUpdateArgs>
-    ): Prisma__ProjectClient<ProjectGetPayload<T>>
-
-    /**
-     * Delete zero or more Projects.
-     * @param {ProjectDeleteManyArgs} args - Arguments to filter Projects to delete.
-     * @example
-     * // Delete a few Projects
-     * const { count } = await prisma.project.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends ProjectDeleteManyArgs>(
-      args?: SelectSubset<T, ProjectDeleteManyArgs>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Projects.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProjectUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Projects
-     * const project = await prisma.project.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends ProjectUpdateManyArgs>(
-      args: SelectSubset<T, ProjectUpdateManyArgs>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Project.
-     * @param {ProjectUpsertArgs} args - Arguments to update or create a Project.
-     * @example
-     * // Update or create a Project
-     * const project = await prisma.project.upsert({
-     *   create: {
-     *     // ... data to create a Project
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Project we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends ProjectUpsertArgs>(
-      args: SelectSubset<T, ProjectUpsertArgs>
-    ): Prisma__ProjectClient<ProjectGetPayload<T>>
-
-    /**
-     * Find zero or more Projects that matches the filter.
-     * @param {ProjectFindRawArgs} args - Select which filters you would like to apply.
-     * @example
-     * const project = await prisma.project.findRaw({
-     *   filter: { age: { $gt: 25 } } 
-     * })
-    **/
-    findRaw(
-      args?: ProjectFindRawArgs
-    ): Prisma.PrismaPromise<JsonObject>
-
-    /**
-     * Perform aggregation operations on a Project.
-     * @param {ProjectAggregateRawArgs} args - Select which aggregations you would like to apply.
-     * @example
-     * const project = await prisma.project.aggregateRaw({
-     *   pipeline: [
-     *     { $match: { status: "registered" } },
-     *     { $group: { _id: "$country", total: { $sum: 1 } } }
-     *   ]
-     * })
-    **/
-    aggregateRaw(
-      args?: ProjectAggregateRawArgs
-    ): Prisma.PrismaPromise<JsonObject>
-
-    /**
-     * Count the number of Projects.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProjectCountArgs} args - Arguments to filter Projects to count.
-     * @example
-     * // Count the number of Projects
-     * const count = await prisma.project.count({
-     *   where: {
-     *     // ... the filter for the Projects we want to count
-     *   }
-     * })
-    **/
-    count<T extends ProjectCountArgs>(
-      args?: Subset<T, ProjectCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends _Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ProjectCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Project.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProjectAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ProjectAggregateArgs>(args: Subset<T, ProjectAggregateArgs>): Prisma.PrismaPromise<GetProjectAggregateType<T>>
-
-    /**
-     * Group by Project.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProjectGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ProjectGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ProjectGroupByArgs['orderBy'] }
-        : { orderBy?: ProjectGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends TupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ProjectGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Project.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export class Prisma__ProjectClient<T, Null = never> implements Prisma.PrismaPromise<T> {
-    private readonly _dmmf;
-    private readonly _queryType;
-    private readonly _rootField;
-    private readonly _clientMethod;
-    private readonly _args;
-    private readonly _dataPath;
-    private readonly _errorFormat;
-    private readonly _measurePerformance?;
-    private _isList;
-    private _callsite;
-    private _requestPromise?;
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
-
-
-    private get _document();
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
-  }
-
-
-
-  // Custom InputTypes
-
-  /**
-   * Project base type for findUnique actions
-   */
-  export type ProjectFindUniqueArgsBase = {
-    /**
-     * Select specific fields to fetch from the Project
-     */
-    select?: ProjectSelect | null
-    /**
-     * Filter, which Project to fetch.
-     */
-    where: ProjectWhereUniqueInput
-  }
-
-  /**
-   * Project findUnique
-   */
-  export interface ProjectFindUniqueArgs extends ProjectFindUniqueArgsBase {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * Project findUniqueOrThrow
-   */
-  export type ProjectFindUniqueOrThrowArgs = {
-    /**
-     * Select specific fields to fetch from the Project
-     */
-    select?: ProjectSelect | null
-    /**
-     * Filter, which Project to fetch.
-     */
-    where: ProjectWhereUniqueInput
-  }
-
-
-  /**
-   * Project base type for findFirst actions
-   */
-  export type ProjectFindFirstArgsBase = {
-    /**
-     * Select specific fields to fetch from the Project
-     */
-    select?: ProjectSelect | null
-    /**
-     * Filter, which Project to fetch.
-     */
-    where?: ProjectWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Projects to fetch.
-     */
-    orderBy?: Enumerable<ProjectOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Projects.
-     */
-    cursor?: ProjectWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Projects from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Projects.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Projects.
-     */
-    distinct?: Enumerable<ProjectScalarFieldEnum>
-  }
-
-  /**
-   * Project findFirst
-   */
-  export interface ProjectFindFirstArgs extends ProjectFindFirstArgsBase {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * Project findFirstOrThrow
-   */
-  export type ProjectFindFirstOrThrowArgs = {
-    /**
-     * Select specific fields to fetch from the Project
-     */
-    select?: ProjectSelect | null
-    /**
-     * Filter, which Project to fetch.
-     */
-    where?: ProjectWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Projects to fetch.
-     */
-    orderBy?: Enumerable<ProjectOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Projects.
-     */
-    cursor?: ProjectWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Projects from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Projects.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Projects.
-     */
-    distinct?: Enumerable<ProjectScalarFieldEnum>
-  }
-
-
-  /**
-   * Project findMany
-   */
-  export type ProjectFindManyArgs = {
-    /**
-     * Select specific fields to fetch from the Project
-     */
-    select?: ProjectSelect | null
-    /**
-     * Filter, which Projects to fetch.
-     */
-    where?: ProjectWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Projects to fetch.
-     */
-    orderBy?: Enumerable<ProjectOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Projects.
-     */
-    cursor?: ProjectWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Projects from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Projects.
-     */
-    skip?: number
-    distinct?: Enumerable<ProjectScalarFieldEnum>
-  }
-
-
-  /**
-   * Project create
-   */
-  export type ProjectCreateArgs = {
-    /**
-     * Select specific fields to fetch from the Project
-     */
-    select?: ProjectSelect | null
-    /**
-     * The data needed to create a Project.
-     */
-    data: XOR<ProjectCreateInput, ProjectUncheckedCreateInput>
-  }
-
-
-  /**
-   * Project createMany
-   */
-  export type ProjectCreateManyArgs = {
-    /**
-     * The data used to create many Projects.
-     */
-    data: Enumerable<ProjectCreateManyInput>
-  }
-
-
-  /**
-   * Project update
-   */
-  export type ProjectUpdateArgs = {
-    /**
-     * Select specific fields to fetch from the Project
-     */
-    select?: ProjectSelect | null
-    /**
-     * The data needed to update a Project.
-     */
-    data: XOR<ProjectUpdateInput, ProjectUncheckedUpdateInput>
-    /**
-     * Choose, which Project to update.
-     */
-    where: ProjectWhereUniqueInput
-  }
-
-
-  /**
-   * Project updateMany
-   */
-  export type ProjectUpdateManyArgs = {
-    /**
-     * The data used to update Projects.
-     */
-    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyInput>
-    /**
-     * Filter which Projects to update
-     */
-    where?: ProjectWhereInput
-  }
-
-
-  /**
-   * Project upsert
-   */
-  export type ProjectUpsertArgs = {
-    /**
-     * Select specific fields to fetch from the Project
-     */
-    select?: ProjectSelect | null
-    /**
-     * The filter to search for the Project to update in case it exists.
-     */
-    where: ProjectWhereUniqueInput
-    /**
-     * In case the Project found by the `where` argument doesn't exist, create a new Project with this data.
-     */
-    create: XOR<ProjectCreateInput, ProjectUncheckedCreateInput>
-    /**
-     * In case the Project was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ProjectUpdateInput, ProjectUncheckedUpdateInput>
-  }
-
-
-  /**
-   * Project delete
-   */
-  export type ProjectDeleteArgs = {
-    /**
-     * Select specific fields to fetch from the Project
-     */
-    select?: ProjectSelect | null
-    /**
-     * Filter which Project to delete.
-     */
-    where: ProjectWhereUniqueInput
-  }
-
-
-  /**
-   * Project deleteMany
-   */
-  export type ProjectDeleteManyArgs = {
-    /**
-     * Filter which Projects to delete
-     */
-    where?: ProjectWhereInput
-  }
-
-
-  /**
-   * Project findRaw
-   */
-  export type ProjectFindRawArgs = {
-    /**
-     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
-     */
-    filter?: InputJsonValue
-    /**
-     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-
-  /**
-   * Project aggregateRaw
-   */
-  export type ProjectAggregateRawArgs = {
-    /**
-     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
-     */
-    pipeline?: InputJsonValue[]
-    /**
-     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-
-  /**
-   * Project without action
-   */
-  export type ProjectArgs = {
-    /**
-     * Select specific fields to fetch from the Project
-     */
-    select?: ProjectSelect | null
+    select?: LessonSelect | null
   }
 
 
@@ -4661,21 +3819,18 @@ export namespace Prisma {
   // Based on
   // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 
-  export const PartnerScalarFieldEnum: {
-    id: 'id',
+  export const LessonScalarFieldEnum: {
+    lesson_id: 'lesson_id',
     name: 'name',
-    logo: 'logo'
+    description: 'description',
+    descriptionFull: 'descriptionFull',
+    protectionDescription: 'protectionDescription',
+    prevelance_level: 'prevelance_level',
+    exploit_ability_level: 'exploit_ability_level',
+    impact_level: 'impact_level'
   };
 
-  export type PartnerScalarFieldEnum = (typeof PartnerScalarFieldEnum)[keyof typeof PartnerScalarFieldEnum]
-
-
-  export const ProjectScalarFieldEnum: {
-    id: 'id',
-    name: 'name'
-  };
-
-  export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+  export type LessonScalarFieldEnum = (typeof LessonScalarFieldEnum)[keyof typeof LessonScalarFieldEnum]
 
 
   export const QueryMode: {
@@ -4707,7 +3862,8 @@ export namespace Prisma {
     username: 'username',
     roles: 'roles',
     email: 'email',
-    name: 'name'
+    name: 'name',
+    number_of_course_completed: 'number_of_course_completed'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -4728,6 +3884,7 @@ export namespace Prisma {
     email?: StringFilter | string
     name?: StringNullableFilter | string | null
     password?: XOR<UserPasswordTypeNullableCompositeFilter, UserPasswordTypeObjectEqualityInput> | null
+    number_of_course_completed?: StringNullableListFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -4737,6 +3894,7 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     password?: UserPasswordTypeOrderByInput
+    number_of_course_completed?: SortOrder
   }
 
   export type UserWhereUniqueInput = {
@@ -4750,6 +3908,7 @@ export namespace Prisma {
     roles?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    number_of_course_completed?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -4764,6 +3923,7 @@ export namespace Prisma {
     roles?: StringNullableListFilter
     email?: StringWithAggregatesFilter | string
     name?: StringNullableWithAggregatesFilter | string | null
+    number_of_course_completed?: StringNullableListFilter
   }
 
   export type UserRefreshTokenWhereInput = {
@@ -4800,74 +3960,63 @@ export namespace Prisma {
     token?: StringWithAggregatesFilter | string
   }
 
-  export type PartnerWhereInput = {
-    AND?: Enumerable<PartnerWhereInput>
-    OR?: Enumerable<PartnerWhereInput>
-    NOT?: Enumerable<PartnerWhereInput>
-    id?: StringFilter | string
+  export type LessonWhereInput = {
+    AND?: Enumerable<LessonWhereInput>
+    OR?: Enumerable<LessonWhereInput>
+    NOT?: Enumerable<LessonWhereInput>
+    lesson_id?: StringFilter | string
     name?: StringFilter | string
-    logo?: StringNullableFilter | string | null
+    description?: StringFilter | string
+    descriptionFull?: StringFilter | string
+    protectionDescription?: StringFilter | string
+    prevelance_level?: IntFilter | number
+    exploit_ability_level?: IntFilter | number
+    impact_level?: IntFilter | number
   }
 
-  export type PartnerOrderByWithRelationInput = {
-    id?: SortOrder
+  export type LessonOrderByWithRelationInput = {
+    lesson_id?: SortOrder
     name?: SortOrder
-    logo?: SortOrder
+    description?: SortOrder
+    descriptionFull?: SortOrder
+    protectionDescription?: SortOrder
+    prevelance_level?: SortOrder
+    exploit_ability_level?: SortOrder
+    impact_level?: SortOrder
   }
 
-  export type PartnerWhereUniqueInput = {
-    id?: string
+  export type LessonWhereUniqueInput = {
+    lesson_id?: string
   }
 
-  export type PartnerOrderByWithAggregationInput = {
-    id?: SortOrder
+  export type LessonOrderByWithAggregationInput = {
+    lesson_id?: SortOrder
     name?: SortOrder
-    logo?: SortOrder
-    _count?: PartnerCountOrderByAggregateInput
-    _max?: PartnerMaxOrderByAggregateInput
-    _min?: PartnerMinOrderByAggregateInput
+    description?: SortOrder
+    descriptionFull?: SortOrder
+    protectionDescription?: SortOrder
+    prevelance_level?: SortOrder
+    exploit_ability_level?: SortOrder
+    impact_level?: SortOrder
+    _count?: LessonCountOrderByAggregateInput
+    _avg?: LessonAvgOrderByAggregateInput
+    _max?: LessonMaxOrderByAggregateInput
+    _min?: LessonMinOrderByAggregateInput
+    _sum?: LessonSumOrderByAggregateInput
   }
 
-  export type PartnerScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<PartnerScalarWhereWithAggregatesInput>
-    OR?: Enumerable<PartnerScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<PartnerScalarWhereWithAggregatesInput>
-    id?: StringWithAggregatesFilter | string
+  export type LessonScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<LessonScalarWhereWithAggregatesInput>
+    OR?: Enumerable<LessonScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<LessonScalarWhereWithAggregatesInput>
+    lesson_id?: StringWithAggregatesFilter | string
     name?: StringWithAggregatesFilter | string
-    logo?: StringNullableWithAggregatesFilter | string | null
-  }
-
-  export type ProjectWhereInput = {
-    AND?: Enumerable<ProjectWhereInput>
-    OR?: Enumerable<ProjectWhereInput>
-    NOT?: Enumerable<ProjectWhereInput>
-    id?: StringFilter | string
-    name?: StringFilter | string
-  }
-
-  export type ProjectOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-  }
-
-  export type ProjectWhereUniqueInput = {
-    id?: string
-  }
-
-  export type ProjectOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    _count?: ProjectCountOrderByAggregateInput
-    _max?: ProjectMaxOrderByAggregateInput
-    _min?: ProjectMinOrderByAggregateInput
-  }
-
-  export type ProjectScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ProjectScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ProjectScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ProjectScalarWhereWithAggregatesInput>
-    id?: StringWithAggregatesFilter | string
-    name?: StringWithAggregatesFilter | string
+    description?: StringWithAggregatesFilter | string
+    descriptionFull?: StringWithAggregatesFilter | string
+    protectionDescription?: StringWithAggregatesFilter | string
+    prevelance_level?: IntWithAggregatesFilter | number
+    exploit_ability_level?: IntWithAggregatesFilter | number
+    impact_level?: IntWithAggregatesFilter | number
   }
 
   export type UserCreateInput = {
@@ -4877,6 +4026,7 @@ export namespace Prisma {
     email: string
     name?: string | null
     password?: XOR<UserPasswordTypeNullableCreateEnvelopeInput, UserPasswordTypeCreateInput> | null
+    number_of_course_completed?: UserCreatenumber_of_course_completedInput | Enumerable<string>
   }
 
   export type UserUncheckedCreateInput = {
@@ -4886,6 +4036,7 @@ export namespace Prisma {
     email: string
     name?: string | null
     password?: XOR<UserPasswordTypeNullableCreateEnvelopeInput, UserPasswordTypeCreateInput> | null
+    number_of_course_completed?: UserCreatenumber_of_course_completedInput | Enumerable<string>
   }
 
   export type UserUpdateInput = {
@@ -4894,6 +4045,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: XOR<UserPasswordTypeNullableUpdateEnvelopeInput, UserPasswordTypeCreateInput> | null
+    number_of_course_completed?: UserUpdatenumber_of_course_completedInput | Enumerable<string>
   }
 
   export type UserUncheckedUpdateInput = {
@@ -4902,6 +4054,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: XOR<UserPasswordTypeNullableUpdateEnvelopeInput, UserPasswordTypeCreateInput> | null
+    number_of_course_completed?: UserUpdatenumber_of_course_completedInput | Enumerable<string>
   }
 
   export type UserCreateManyInput = {
@@ -4911,6 +4064,7 @@ export namespace Prisma {
     email: string
     name?: string | null
     password?: XOR<UserPasswordTypeNullableCreateEnvelopeInput, UserPasswordTypeCreateInput> | null
+    number_of_course_completed?: UserCreatenumber_of_course_completedInput | Enumerable<string>
   }
 
   export type UserUpdateManyMutationInput = {
@@ -4919,6 +4073,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: XOR<UserPasswordTypeNullableUpdateEnvelopeInput, UserPasswordTypeCreateInput> | null
+    number_of_course_completed?: UserUpdatenumber_of_course_completedInput | Enumerable<string>
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -4927,6 +4082,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: XOR<UserPasswordTypeNullableUpdateEnvelopeInput, UserPasswordTypeCreateInput> | null
+    number_of_course_completed?: UserUpdatenumber_of_course_completedInput | Enumerable<string>
   }
 
   export type UserRefreshTokenCreateInput = {
@@ -4960,73 +4116,77 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
   }
 
-  export type PartnerCreateInput = {
-    id?: string
+  export type LessonCreateInput = {
+    lesson_id?: string
     name: string
-    logo?: string | null
+    description: string
+    descriptionFull: string
+    protectionDescription: string
+    prevelance_level: number
+    exploit_ability_level: number
+    impact_level: number
   }
 
-  export type PartnerUncheckedCreateInput = {
-    id?: string
+  export type LessonUncheckedCreateInput = {
+    lesson_id?: string
     name: string
-    logo?: string | null
+    description: string
+    descriptionFull: string
+    protectionDescription: string
+    prevelance_level: number
+    exploit_ability_level: number
+    impact_level: number
   }
 
-  export type PartnerUpdateInput = {
+  export type LessonUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    descriptionFull?: StringFieldUpdateOperationsInput | string
+    protectionDescription?: StringFieldUpdateOperationsInput | string
+    prevelance_level?: IntFieldUpdateOperationsInput | number
+    exploit_ability_level?: IntFieldUpdateOperationsInput | number
+    impact_level?: IntFieldUpdateOperationsInput | number
   }
 
-  export type PartnerUncheckedUpdateInput = {
+  export type LessonUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    descriptionFull?: StringFieldUpdateOperationsInput | string
+    protectionDescription?: StringFieldUpdateOperationsInput | string
+    prevelance_level?: IntFieldUpdateOperationsInput | number
+    exploit_ability_level?: IntFieldUpdateOperationsInput | number
+    impact_level?: IntFieldUpdateOperationsInput | number
   }
 
-  export type PartnerCreateManyInput = {
-    id?: string
+  export type LessonCreateManyInput = {
+    lesson_id?: string
     name: string
-    logo?: string | null
+    description: string
+    descriptionFull: string
+    protectionDescription: string
+    prevelance_level: number
+    exploit_ability_level: number
+    impact_level: number
   }
 
-  export type PartnerUpdateManyMutationInput = {
+  export type LessonUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    descriptionFull?: StringFieldUpdateOperationsInput | string
+    protectionDescription?: StringFieldUpdateOperationsInput | string
+    prevelance_level?: IntFieldUpdateOperationsInput | number
+    exploit_ability_level?: IntFieldUpdateOperationsInput | number
+    impact_level?: IntFieldUpdateOperationsInput | number
   }
 
-  export type PartnerUncheckedUpdateManyInput = {
+  export type LessonUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
-    logo?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ProjectCreateInput = {
-    id?: string
-    name: string
-  }
-
-  export type ProjectUncheckedCreateInput = {
-    id?: string
-    name: string
-  }
-
-  export type ProjectUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ProjectUncheckedUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ProjectCreateManyInput = {
-    id?: string
-    name: string
-  }
-
-  export type ProjectUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ProjectUncheckedUpdateManyInput = {
-    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    descriptionFull?: StringFieldUpdateOperationsInput | string
+    protectionDescription?: StringFieldUpdateOperationsInput | string
+    prevelance_level?: IntFieldUpdateOperationsInput | number
+    exploit_ability_level?: IntFieldUpdateOperationsInput | number
+    impact_level?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter = {
@@ -5091,6 +4251,7 @@ export namespace Prisma {
     roles?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    number_of_course_completed?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -5159,37 +4320,76 @@ export namespace Prisma {
     token?: SortOrder
   }
 
-  export type PartnerCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    logo?: SortOrder
+  export type IntFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedIntFilter | number
   }
 
-  export type PartnerMaxOrderByAggregateInput = {
-    id?: SortOrder
+  export type LessonCountOrderByAggregateInput = {
+    lesson_id?: SortOrder
     name?: SortOrder
-    logo?: SortOrder
+    description?: SortOrder
+    descriptionFull?: SortOrder
+    protectionDescription?: SortOrder
+    prevelance_level?: SortOrder
+    exploit_ability_level?: SortOrder
+    impact_level?: SortOrder
   }
 
-  export type PartnerMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    logo?: SortOrder
+  export type LessonAvgOrderByAggregateInput = {
+    prevelance_level?: SortOrder
+    exploit_ability_level?: SortOrder
+    impact_level?: SortOrder
   }
 
-  export type ProjectCountOrderByAggregateInput = {
-    id?: SortOrder
+  export type LessonMaxOrderByAggregateInput = {
+    lesson_id?: SortOrder
     name?: SortOrder
+    description?: SortOrder
+    descriptionFull?: SortOrder
+    protectionDescription?: SortOrder
+    prevelance_level?: SortOrder
+    exploit_ability_level?: SortOrder
+    impact_level?: SortOrder
   }
 
-  export type ProjectMaxOrderByAggregateInput = {
-    id?: SortOrder
+  export type LessonMinOrderByAggregateInput = {
+    lesson_id?: SortOrder
     name?: SortOrder
+    description?: SortOrder
+    descriptionFull?: SortOrder
+    protectionDescription?: SortOrder
+    prevelance_level?: SortOrder
+    exploit_ability_level?: SortOrder
+    impact_level?: SortOrder
   }
 
-  export type ProjectMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
+  export type LessonSumOrderByAggregateInput = {
+    prevelance_level?: SortOrder
+    exploit_ability_level?: SortOrder
+    impact_level?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedIntWithAggregatesFilter | number
+    _count?: NestedIntFilter
+    _avg?: NestedFloatFilter
+    _sum?: NestedIntFilter
+    _min?: NestedIntFilter
+    _max?: NestedIntFilter
   }
 
   export type UserCreaterolesInput = {
@@ -5203,6 +4403,10 @@ export namespace Prisma {
   export type UserPasswordTypeCreateInput = {
     initialPassword: boolean
     password: string
+  }
+
+  export type UserCreatenumber_of_course_completedInput = {
+    set: Enumerable<string>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -5223,6 +4427,19 @@ export namespace Prisma {
     set?: UserPasswordTypeCreateInput | null
     upsert?: UserPasswordTypeUpsertInput
     unset?: boolean
+  }
+
+  export type UserUpdatenumber_of_course_completedInput = {
+    set?: Enumerable<string>
+    push?: string | Enumerable<string>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter = {
@@ -5318,6 +4535,33 @@ export namespace Prisma {
     gte?: number
     not?: NestedIntNullableFilter | number | null
     isSet?: boolean
+  }
+
+  export type NestedIntWithAggregatesFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedIntWithAggregatesFilter | number
+    _count?: NestedIntFilter
+    _avg?: NestedFloatFilter
+    _sum?: NestedIntFilter
+    _min?: NestedIntFilter
+    _max?: NestedIntFilter
+  }
+
+  export type NestedFloatFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedFloatFilter | number
   }
 
   export type UserPasswordTypeUpsertInput = {

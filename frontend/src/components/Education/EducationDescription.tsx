@@ -1,17 +1,36 @@
-import EducationLessons from "./EducationLesson";
+import EducationLesson from "./EducationLesson";
+import { useQuery, gql } from '@apollo/client';
+import { GET_LESSONS } from '../../GraphQL/queries';
+import React from "react";
+import ThreeDotsWave from "../Anims/three-dots-wave";
+import LazyShow from "../Anims/LazyShow";
 
-const EducationDescription = (props) => {
-    let LessonsCount = props.LessonsCount;
-    let ElemArray = [];
+const EducationDescription = () => {
 
-    for (let i = 0; i < props.LessonsCount; i++) {
-        ElemArray[i] = <EducationLessons name={"Broken Access Control"} description={"Access control enforces policy such that users cannot act outside of their intended permissions. Failures typically lead to unauthorized information disclosure, modification, or destruction of all data or performing a business function outside the user's limits."} />
-    }
+    const { loading, error,data } = useQuery(GET_LESSONS);
+
+    if (loading) return (
+        <>
+            <ThreeDotsWave />
+        </>
+    )
+        
+
 
     return (
-        <>
-            
-        </>
+
+        <div className='Container' style={{height: "auto", marginTop: "15vh", marginBottom: "15vh"}}>
+            <div>
+                {data?.lessons?.map((lesson) => (
+                    <LazyShow>
+                        <EducationLesson key={lesson}
+                        items={lesson}
+                        />
+                    </LazyShow>
+                ))}
+            </div>
+        </div>
+        
     );
 }
 
