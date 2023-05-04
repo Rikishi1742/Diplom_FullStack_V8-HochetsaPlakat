@@ -57,7 +57,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 });
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: "https://diplom-full-stack-v8-hochetsa-plakat-jv1v.vercel.app/graphql",
   cache: new InMemoryCache(),
   link: from([apolloLogger, authMiddleware, httpLink])
 });
