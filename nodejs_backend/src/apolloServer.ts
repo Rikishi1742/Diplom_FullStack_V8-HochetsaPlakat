@@ -26,7 +26,8 @@ const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
 
   let callFromStudio = req.url === '/'; // не будем логгировать вызовы от Apollo Studio - они каждую секунду идут
   res.setHeader(['x-access-token', 'x-refresh-token']);
-  res.setHeader('Access-Control-Allow-Origin', "*"); 
+  res.setHeader('Access-Control-Allow-Origin', "*");
+
   const accessToken = req.headers[ACCESS_TOKEN_NAME];
   if (accessToken) {
     //console.log('Access', accessToken);
@@ -67,7 +68,7 @@ const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
         const decodedAccessToken = checkAccessToken(tokens.accessToken);
 
         // done: accessToken надо-тоже как-то вернуть!
-        res.setHeader('no-cors',ACCESS_TOKEN_NAME, tokens.accessToken);
+        res.setHeader(ACCESS_TOKEN_NAME, tokens.accessToken);
 
         // add the user to the context
         if (!callFromStudio) {
