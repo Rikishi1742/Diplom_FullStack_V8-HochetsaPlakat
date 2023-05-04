@@ -1,4 +1,5 @@
 import { ApolloClient, ApolloLink, from, HttpLink, InMemoryCache } from "@apollo/client";
+import cors from 'cors';
 
 import apolloLogger from 'apollo-link-logger';
 import { getTokens, saveTokens } from "./manage-tokens";
@@ -27,6 +28,8 @@ const authMiddleware = new ApolloLink((operation, forward) => {
       'x-refresh-token': tokens.refreshToken
     }
   }));
+
+  
 
   // это общий обработчик всех результатов из GraphQL - если в ответе прийдет accessToken то надо его сохранить и далее использовать
   return forward(operation).map((response) => {

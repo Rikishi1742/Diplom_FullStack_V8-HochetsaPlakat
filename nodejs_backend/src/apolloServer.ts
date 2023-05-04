@@ -102,6 +102,9 @@ const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
 
 export const CreateApolloServer = async () => {
   const app = express();
+
+  app.use(cors());
+  
   const httpServer = http.createServer(app);
 
   const port = process.env.BACKEND_API_PORT;
@@ -151,4 +154,6 @@ export const CreateApolloServer = async () => {
     httpServer.listen({ port: port }, resolve)
   );
   console.log(`🚀 Server ready at http://localhost:${port}/graphql`);
-};
+
+}
+;
