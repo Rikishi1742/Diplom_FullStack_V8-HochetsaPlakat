@@ -26,6 +26,7 @@ const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
 
   let callFromStudio = req.url === '/'; // не будем логгировать вызовы от Apollo Studio - они каждую секунду идут
   res.setHeader(['x-access-token', 'x-refresh-token']);
+  
   res.setHeader('Access-Control-Allow-Origin', "*");
 
   const accessToken = req.headers[ACCESS_TOKEN_NAME];
@@ -128,7 +129,6 @@ export const CreateApolloServer = async () => {
 
   app.use((req, res, next) => {
     // log method and request body and real ip
-    res.header("Access-Control-Allow-Origin", "*");
     logger.info(`${req.method} ${req.url} ${req.ip}`);
     next();
   });
