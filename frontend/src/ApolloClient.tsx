@@ -22,7 +22,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
-      'access-control-allow-origin': '*',
+      'Access-Control-Allow-Origin' : "*",
       'x-access-token': tokens.accessToken,
       'x-refresh-token': tokens.refreshToken
     }
