@@ -118,6 +118,7 @@ export const CreateApolloServer = async () => {
   logger.info("GraphQL: Create server");
 
   const server = new ApolloServer<Context>({
+    
     schema: schema,
   });
 
