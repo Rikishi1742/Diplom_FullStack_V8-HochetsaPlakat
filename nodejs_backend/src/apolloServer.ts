@@ -126,15 +126,9 @@ export const CreateApolloServer = async () => {
 
   await server.start();
 
-  app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
-  
-
   app.use((req, res, next) => {
     // log method and request body and real ip
+    res.header("Access-Control-Allow-Origin", "*");
     logger.info(`${req.method} ${req.url} ${req.ip}`);
     next();
   });
