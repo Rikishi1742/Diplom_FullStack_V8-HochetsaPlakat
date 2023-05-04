@@ -103,8 +103,6 @@ const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
 export const CreateApolloServer = async () => {
   const app = express();
 
-  app.use(cors());
-  
   const httpServer = http.createServer(app);
 
   const port = process.env.BACKEND_API_PORT;
