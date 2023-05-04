@@ -132,15 +132,17 @@ export const CreateApolloServer = async () => {
     next();
   });
 
+  app.use( cors() );
+
   // always respond ok to health check
-  app.use("/health", json(), (req, res) => { //, cors<cors.CorsRequest>()
+  app.use("/health", cors<cors.CorsRequest>(), json(), (req, res) => { //
     res.json({ status: "ok" });
   });
 
   // Specify the path where we'd like to mount our server
   app.use(
     "/graphql",
-  //cors<cors.CorsRequest>(),
+    cors<cors.CorsRequest>(),
     json(),
     expressMiddleware(server, {
       context: PrepareContextWithAuth
