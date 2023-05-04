@@ -4,7 +4,7 @@ import apolloLogger from 'apollo-link-logger';
 import { getTokens, saveTokens } from "./manage-tokens";
 
 function backendApiUrl() {
-  return 'http://localhost:4000/graphql';
+  return 'https://diplom-full-stack-v8-hochetsa-plakat-jv1v-kvxahmqhc-rikishi1742.vercel.app/graphql';
 }
 
 const BACKEND_API_URL = backendApiUrl();
