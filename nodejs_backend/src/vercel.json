@@ -17,11 +17,6 @@
             "value": "1; mode=block"
           }
         ]
-      },
-      {
-        "routes": [
-            { "src": "/src", "dest": "/apolloServer.ts" }
-        ] 
       }
     ]
   }
