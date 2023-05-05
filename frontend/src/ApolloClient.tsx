@@ -65,7 +65,8 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 const client = new ApolloClient({
   uri: "https://diplom-full-stack-v8-hochetsa-plakat-g4x9.vercel.app/graphql",
   cache: new InMemoryCache(),
-  link: from([apolloLogger, authMiddleware, httpLink])
+  link: from([apolloLogger, authMiddleware, httpLink]),
+  
 });
 
 export default client;
