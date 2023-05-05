@@ -13,7 +13,6 @@ import * as TypeGraphQL from "type-graphql";
 import { PrismaClient } from "./generated/client";
 import { prisma } from "./prismaInit";
 import { checkAccessToken, checkRefreshTokenAndGenerateNewAccessToken } from "./auth/authHelper";
-import bodyParser from 'body-parser';
 
 interface Context {
   prisma: PrismaClient;
@@ -26,6 +25,7 @@ const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
 
   let callFromStudio = req.url === '/'; // не будем логгировать вызовы от Apollo Studio - они каждую секунду идут
   res.setHeader('Access-Control-Expose-Headers', ['x-access-token', 'x-refresh-token']);
+  res.setHeader('Access-Control-Allow-Origin', "*");
   const accessToken = req.headers[ACCESS_TOKEN_NAME];
   if (accessToken) {
     //console.log('Access', accessToken);
