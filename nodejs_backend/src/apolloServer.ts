@@ -135,7 +135,7 @@ export const CreateApolloServer = async () => {
   });
 
   // always respond ok to health check
-  app.use("/health", cors<cors.CorsRequest>(null), json(), (req, res) => {
+  app.use("/health", cors<cors.CorsRequest>(), json(), (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
