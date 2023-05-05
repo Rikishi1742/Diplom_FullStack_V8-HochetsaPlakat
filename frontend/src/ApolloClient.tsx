@@ -4,7 +4,7 @@ import apolloLogger from 'apollo-link-logger';
 import { getTokens, saveTokens } from "./manage-tokens";
 
 function backendApiUrl() {
-  return 'https://diplom-full-stack-v8-hochetsa-plakat-g4x9.vercel.app/graphql';
+  return 'http://localhost:4000/graphql';
 }
 
 const BACKEND_API_URL = backendApiUrl();
@@ -22,21 +22,17 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
-      'Access-Control-Allow-Origin': '*',
       'x-access-token': tokens.accessToken,
       'x-refresh-token': tokens.refreshToken
-    },
-    mode: 'no-cors'
+    }
   }));
-
-  
 
   // это общий обработчик всех результатов из GraphQL - если в ответе прийдет accessToken то надо его сохранить и далее использовать
   return forward(operation).map((response) => {
 
     const context = operation.getContext();
     const {
-      response: { headers }
+      response: { headers },
     } = context;
 
     
@@ -61,10 +57,9 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 });
 
 const client = new ApolloClient({
-  uri: "https://diplom-full-stack-v8-hochetsa-plakat-g4x9.vercel.app/graphql",
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
-  link: from([apolloLogger, authMiddleware, httpLink]),
-  
+  link: from([apolloLogger, authMiddleware, httpLink])
 });
 
 export default client;

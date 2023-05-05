@@ -19,14 +19,13 @@ interface Context {
   user: object | null;
 }
 
+
 const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
   const ACCESS_TOKEN_NAME = 'x-access-token';
   const REFRESH_TOKEN_NAME = 'x-refresh-token';
 
   let callFromStudio = req.url === '/'; // не будем логгировать вызовы от Apollo Studio - они каждую секунду идут
   res.setHeader('Access-Control-Expose-Headers', ['x-access-token', 'x-refresh-token']);
-  res.setHeader('Access-Control-Allow-Origin', "*");
-  req.setHeader('Access-Control-Allow-Origin', "*");
   const accessToken = req.headers[ACCESS_TOKEN_NAME];
   if (accessToken) {
     //console.log('Access', accessToken);
@@ -129,7 +128,11 @@ export const CreateApolloServer = async () => {
     next();
   });
 
-  // Specify the path where we'd like to mount our server
+  // always respond ok to health check
+  app.use("/health", cors<cors.CorsRequest>(), json(), (req, res) => {
+    res.json({ status: "ok" });
+  });
+
   app.use(
     "/graphql",
     cors(),
@@ -138,10 +141,6 @@ export const CreateApolloServer = async () => {
       context: PrepareContextWithAuth
     })
   );
-
-  app.use((req, res) => {
-    res.status(404).send("Not found");
-  });
 
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: port }, resolve)
