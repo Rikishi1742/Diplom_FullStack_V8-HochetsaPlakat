@@ -70,6 +70,7 @@ const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
 
         // done: accessToken надо-тоже как-то вернуть!
         res.setHeader(ACCESS_TOKEN_NAME, tokens.accessToken);
+        res.setHeader('Access-Control-Allow-Origin: *', 'Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS' ,'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token','Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 
         // add the user to the context
         if (!callFromStudio) {
