@@ -26,7 +26,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
       'x-access-token': tokens.accessToken,
       'x-refresh-token': tokens.refreshToken
     },
-    mode: 'no-corse'
+    mode: 'no-cors'
   }));
 
   

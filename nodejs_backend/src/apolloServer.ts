@@ -149,7 +149,13 @@ export const CreateApolloServer = async () => {
     json(),
     expressMiddleware(server, {
       context: PrepareContextWithAuth
-    })
+    }),
+    (req, res) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+      res.header('Access-Control-Allow-Headers', 'Content-Type');
+      res.json({ status: "ok" });
+    }
   );
 
   app.use((req, res) => {
