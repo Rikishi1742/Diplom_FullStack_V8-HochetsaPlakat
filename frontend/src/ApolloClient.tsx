@@ -23,6 +23,8 @@ const authMiddleware = new ApolloLink((operation, forward) => {
     headers: {
       ...headers,
       'Access-Control-Allow-Origin': "*",
+      'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS" ,
+      'Access-Control-Allow-Headers': "Origin, Content-Type, X-Auth-Token",
       'x-access-token': tokens.accessToken,
       'x-refresh-token': tokens.refreshToken
     },
