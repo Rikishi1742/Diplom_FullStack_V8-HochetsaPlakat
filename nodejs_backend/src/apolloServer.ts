@@ -3,7 +3,6 @@ import { expressMiddleware } from "@apollo/server/express4";
 import express from "express";
 import http from "http";
 import logger from "./logger";
-import cors from "cors";
 import pkg from "body-parser";
 import "reflect-metadata";
 import { resolvers } from "./generated/type-graphql";
