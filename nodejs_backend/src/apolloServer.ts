@@ -3,6 +3,7 @@ import { expressMiddleware } from "@apollo/server/express4";
 import express from "express";
 import http from "http";
 import logger from "./logger";
+import cors from "cors";
 import pkg from "body-parser";
 import "reflect-metadata";
 import { resolvers } from "./generated/type-graphql";
@@ -18,14 +19,13 @@ interface Context {
   user: object | null;
 }
 
+
 const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
   const ACCESS_TOKEN_NAME = 'x-access-token';
   const REFRESH_TOKEN_NAME = 'x-refresh-token';
 
   let callFromStudio = req.url === '/'; // не будем логгировать вызовы от Apollo Studio - они каждую секунду идут
-  res.setHeader(['x-access-token', 'x-refresh-token']);
-
-
+  res.setHeader('Access-Control-Expose-Headers', ['x-access-token', 'x-refresh-token']);
   const accessToken = req.headers[ACCESS_TOKEN_NAME];
   if (accessToken) {
     //console.log('Access', accessToken);
@@ -67,10 +67,6 @@ const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
 
         // done: accessToken надо-тоже как-то вернуть!
         res.setHeader(ACCESS_TOKEN_NAME, tokens.accessToken);
-        res.setHeader('Access-Control-Allow-Headers:', 'Origin, Content-Type, X-Auth-Token:');
-        res.setHeader('Access-Control-Allow-Origin:', "*");
-        res.setHeader('Access-Control-Allow-Methods:', "GET, POST, PATCH, PUT, DELETE, OPTIONS");
-
 
         // add the user to the context
         if (!callFromStudio) {
@@ -106,7 +102,6 @@ const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
 
 export const CreateApolloServer = async () => {
   const app = express();
-
   const httpServer = http.createServer(app);
 
   const port = process.env.BACKEND_API_PORT;
@@ -122,7 +117,6 @@ export const CreateApolloServer = async () => {
   logger.info("GraphQL: Create server");
 
   const server = new ApolloServer<Context>({
-    
     schema: schema,
   });
 
@@ -134,16 +128,15 @@ export const CreateApolloServer = async () => {
     next();
   });
 
-
-
   // always respond ok to health check
-  app.use("/health", json(), (req, res) => { //
+  app.use("/health", cors<cors.CorsRequest>(), json(), (req, res) => {
     res.json({ status: "ok" });
   });
 
   // Specify the path where we'd like to mount our server
   app.use(
     "/graphql",
+    cors<cors.CorsRequest>(),
     json(),
     expressMiddleware(server, {
       context: PrepareContextWithAuth
@@ -158,6 +151,4 @@ export const CreateApolloServer = async () => {
     httpServer.listen({ port: port }, resolve)
   );
   console.log(`🚀 Server ready at http://localhost:${port}/graphql`);
-
-}
-;
+};
