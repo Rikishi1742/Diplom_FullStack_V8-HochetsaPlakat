@@ -13,6 +13,7 @@ import * as TypeGraphQL from "type-graphql";
 import { PrismaClient } from "./generated/client";
 import { prisma } from "./prismaInit";
 import { checkAccessToken, checkRefreshTokenAndGenerateNewAccessToken } from "./auth/authHelper";
+import bodyParser from 'body-parser';
 
 interface Context {
   prisma: PrismaClient;
@@ -122,40 +123,19 @@ export const CreateApolloServer = async () => {
   await server.start();
 
   app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-  });
-
-  app.use((req, res, next) => {
     // log method and request body and real ip
     logger.info(`${req.method} ${req.url} ${req.ip}`);
     next();
   });
 
-  // always respond ok to health check
-  app.use("/health", cors<cors.CorsRequest>(), json(), (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.json({ status: "ok" });
-  });
-
   // Specify the path where we'd like to mount our server
   app.use(
     "/graphql",
-    cors<cors.CorsRequest>(null),
+    cors(),
     json(),
     expressMiddleware(server, {
       context: PrepareContextWithAuth
-    }),
-    (req, res) => {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-      res.header('Access-Control-Allow-Headers', 'Content-Type');
-      res.json({ status: "ok" });
-    }
+    })
   );
 
   app.use((req, res) => {
