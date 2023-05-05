@@ -19,7 +19,6 @@ interface Context {
   user: object | null;
 }
 
-
 const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
   const ACCESS_TOKEN_NAME = 'x-access-token';
   const REFRESH_TOKEN_NAME = 'x-refresh-token';
@@ -28,6 +27,8 @@ const PrepareContextWithAuth = async ({ req, res }): Promise<Context> => {
   res.setHeader(['x-access-token', 'x-refresh-token']);
   
   res.setHeader('Access-Control-Allow-Origin', "*");
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
 
   const accessToken = req.headers[ACCESS_TOKEN_NAME];
   if (accessToken) {
@@ -140,14 +141,13 @@ export const CreateApolloServer = async () => {
 
 
   // always respond ok to health check
-  app.use("/health", cors<cors.CorsRequest>(), json(), (req, res) => { //
+  app.use("/health", json(), (req, res) => { //
     res.json({ status: "ok" });
   });
 
   // Specify the path where we'd like to mount our server
   app.use(
     "/graphql",
-    cors<cors.CorsRequest>(),
     json(),
     expressMiddleware(server, {
       context: PrepareContextWithAuth
