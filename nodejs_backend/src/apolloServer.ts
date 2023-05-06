@@ -13,6 +13,7 @@ import * as TypeGraphQL from "type-graphql";
 import { PrismaClient } from "./generated/client";
 import { prisma } from "./prismaInit";
 import { checkAccessToken, checkRefreshTokenAndGenerateNewAccessToken } from "./auth/authHelper";
+import { startStandaloneServer } from '@apollo/server/standalone';
 
 interface Context {
   prisma: PrismaClient;
@@ -104,7 +105,7 @@ export const CreateApolloServer = async () => {
   const app = express();
   const httpServer = http.createServer(app);
 
-  const port = process.env.BACKEND_API_PORT;
+  const url = process.env.BACKEND_URL;
 
   logger.info("GraphQL: Building schema");
 
@@ -142,8 +143,18 @@ export const CreateApolloServer = async () => {
     })
   );
 
+
   await new Promise<void>((resolve) =>
-    httpServer.listen({ port: port }, resolve)
+    httpServer.listen({ url }, resolve)
   );
-  console.log(`🚀 Server ready at http://localhost:${port}/graphql`);
+  console.log(`🚀 Server ready at ${url}`);
+  
+
+/*
+    const { url } = await startStandaloneServer(server, {
+      context: async ({ req }) => ({ token: req.headers.token }),
+      listen: { port: 4000 },
+    });
+    console.log(`🚀  Server ready at ${url}`);
+    */
 };
