@@ -1,10 +1,11 @@
 import React from 'react'
+import AboutUsContent from '../components/AboutUs/AboutUsContent'
 
 type Props = {}
 
 function AboutUs({}: Props) {
   return (
-    <div>About Us</div>
+    <AboutUsContent />
   )
 }
 

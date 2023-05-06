@@ -33,9 +33,6 @@ const LazyShow = ({ children }) => {
   const rootRef = useRef();
   const onScreen = useOnScreen(rootRef);
 
-  let dirTop;
-  let diHorizontal;
-
   useEffect(() => {
     if (onScreen) {
       controls.start({

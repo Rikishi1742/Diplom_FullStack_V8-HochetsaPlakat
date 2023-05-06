@@ -14,7 +14,7 @@ const FooterTopEl = () => {
             </div>
 
             <div>
-                <h2>Autor</h2>
+                <h2>Author</h2>
                 <hr></hr>
                 <p>Platonov Anton</p>
                 <br />

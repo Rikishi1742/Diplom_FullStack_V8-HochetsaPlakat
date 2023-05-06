@@ -1,0 +1,11 @@
+.AboutUsPageContent {
+    height: 90vh;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+.AboutUsPageContent h2 {
+    color: #fff;
+}

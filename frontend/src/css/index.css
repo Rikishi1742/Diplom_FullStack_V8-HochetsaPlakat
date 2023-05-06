@@ -112,6 +112,79 @@ ul {
   z-index: 999;
 }
 
+.TitleWindow
+{
+    width: 100%;
+    height: 55px;
+    background: #66CC66;
+    border-radius: 20px 20px 0px 0px;
+    box-shadow: 24px 20px 19px rgba(0, 0, 0, 0.25);
+}
+
+.TitleWindow h3
+{
+    color: #000000;
+    margin: 0;
+    text-align: center;
+}
+
+.TitleWindow p
+{
+    color: #000000;
+    margin: 0 0 10px 15px;
+    text-align: start;
+    font-weight: 600;
+}
+
+.Design
+{
+    display: flex;
+    width: 100%;
+    justify-content: start;
+}
+
+.Design p {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    color: #fff;
+    font-size: 15px;
+    margin: 12px;
+  }
+
+
+.ConsoleWindow
+{
+    height: calc(100% - 55px);
+    width: 100%;
+    background: rgba(65, 65, 65, 0.67);
+    margin: 0;
+    box-shadow: 24px 20px 19px rgba(0, 0, 0, 0.25);
+    text-overflow:clip;
+    white-space:normal;
+    overflow:auto;
+    vertical-align: middle;
+}
+
+.ConsoleWindow p {
+  margin: 10px;
+}
+
+.ConsoleWindow::-webkit-scrollbar {
+  width: 5px;
+  height: 100%;
+  background-color: #000000;
+}
+
+.ConsoleWindow::-webkit-scrollbar-thumb  {
+  background-color: #66CC66;
+  border-radius: 5px;
+}
+
 @media screen and (max-width: 1920px) {
 
   .Container
@@ -120,7 +193,7 @@ ul {
   }
 
   h2 {
-    font-size: 4vw;
+    font-size: 3vw;
   }
 
   p {

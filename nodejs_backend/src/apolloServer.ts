@@ -106,6 +106,7 @@ export const CreateApolloServer = async () => {
   const httpServer = http.createServer(app);
 
   const url = process.env.BACKEND_URL;
+  const port = process.env.BACKEND_API_PORT;
 
   logger.info("GraphQL: Building schema");
 
@@ -145,10 +146,11 @@ export const CreateApolloServer = async () => {
 
 
   await new Promise<void>((resolve) =>
-    httpServer.listen({ url }, resolve)
+    httpServer.listen({ port: port }, resolve)
   );
-  console.log(`🚀 Server ready at ${url}`);
+  console.log(`🚀 Server ready at http://localhost:${port}/graphql`);
   
+    
 
 /*
     const { url } = await startStandaloneServer(server, {
