@@ -33,3 +33,9 @@
     width: 30%;
     height: 50%;
 }
+
+@media screen and (max-width: 800px) {
+    .TestButton h2 {
+        font-size: 18px;
+    }
+}
