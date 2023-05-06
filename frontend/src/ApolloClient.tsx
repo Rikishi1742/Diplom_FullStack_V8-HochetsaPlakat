@@ -4,7 +4,7 @@ import apolloLogger from 'apollo-link-logger';
 import { getTokens, saveTokens } from "./manage-tokens";
 
 function backendApiUrl() {
-  return 'https://diplom-full-stack-v8-hochetsa-plakat-g4x9.vercel.app/graphql';
+  return 'http://diplom-full-stack-v8-hochetsa-plakat-g4x9.vercel.app/graphql';
 }
 
 const BACKEND_API_URL = backendApiUrl();
@@ -57,7 +57,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 });
 
 const client = new ApolloClient({
-  uri: "https://diplom-full-stack-v8-hochetsa-plakat-g4x9.vercel.app/graphql",
+  uri: "http://diplom-full-stack-v8-hochetsa-plakat-g4x9.vercel.app/graphql", //https://diplom-full-stack-v8-hochetsa-plakat-g4x9.vercel.app/graphql
   cache: new InMemoryCache(),
   link: from([apolloLogger, authMiddleware, httpLink])
 });

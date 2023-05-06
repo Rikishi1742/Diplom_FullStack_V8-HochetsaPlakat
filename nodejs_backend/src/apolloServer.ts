@@ -13,7 +13,6 @@ import * as TypeGraphQL from "type-graphql";
 import { PrismaClient } from "./generated/client";
 import { prisma } from "./prismaInit";
 import { checkAccessToken, checkRefreshTokenAndGenerateNewAccessToken } from "./auth/authHelper";
-import { startStandaloneServer } from '@apollo/server/standalone';
 
 interface Context {
   prisma: PrismaClient;
