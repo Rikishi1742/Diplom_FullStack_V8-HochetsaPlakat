@@ -38,8 +38,7 @@ p {
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 2vw;
-    line-height: 37px;
+    font-size: 1.6vw;
     text-align: justify;
 }
 
@@ -140,7 +139,7 @@ ul {
 {
     display: flex;
     width: 100%;
-    justify-content: start;
+    justify-content: space-between;
 }
 
 .Design p {
@@ -193,11 +192,11 @@ ul {
   }
 
   h2 {
-    font-size: 3vw;
+    font-size: 2.7vw;
   }
 
   p {
-    font-size: 2.2vw;
+    font-size: 2vw;
   }
 }
 
@@ -230,7 +229,6 @@ ul {
 
   p {
     font-size: 4vw;
-    line-height: 35px;
   }
 }
 
@@ -247,7 +245,6 @@ ul {
 
   p {
     font-size: 3vw;
-    line-height: 31px;
   }
 
   .Image {

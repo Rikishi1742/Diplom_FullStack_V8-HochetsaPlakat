@@ -4,9 +4,15 @@ const ConsoleWindow = ({ children } ) => {
                 <div className="TitleWindow">
                     <h3></h3>
                     <div className="Design">
-                        <p>File</p>
-                        <p>Edit</p>
-                        <p>View</p>
+                        <div style={{display: "flex", flexDirection: "row"}}>
+                            <p>File</p>
+                            <p>Edit</p>
+                            <p>View</p>
+                        </div>
+                        <div style={{marginRight: "17px"}}>
+                            <p>X</p>
+                        </div>
+                        
                     </div>
                 </div>
 

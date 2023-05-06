@@ -1,11 +1,41 @@
 .AboutUsPageContent {
-    height: 90vh;
+    height: auto;
     width: 100%;
 
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 .AboutUsPageContent h2 {
     color: #fff;
+}
+
+.AboutUsPageContent .Welcome {
+    width: 100%;
+    margin-top: 15vh;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .AboutUsPageContent h2 {
+        font-size: 4vw;
+    }
+
+    .AboutUsPageContent p {
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .AboutUsPageContent .Welcome .lazy-div{
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .Container .lazy-div {
+        width: 100% !important;
+        height: auto !important;
+    }
+
 }

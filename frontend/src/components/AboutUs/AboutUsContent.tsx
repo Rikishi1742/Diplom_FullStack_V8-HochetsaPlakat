@@ -8,24 +8,27 @@ const AboutUsContent = () => {
         <>
             <div className="Container" style={{ height: "auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="AboutUsPageContent">
-                    <LazyShow>
-                        <h2>Welcome to <b>Gecko</b> - an electronic training and methodological complex for web application security!</h2>
+                    <div className="Welcome">
                         <LazyShow>
-                            <div style={{ display: "flex", flexDirection: "row" }}>
-                                <div style={{ width: "50%", display: "flex", justifyContent: "end" }}>
-                                    <LazyShow>
-                                        <img src="../PlaceHolder.svg" alt="" style={{ width: "70%" }} />
-                                    </LazyShow>
-                                </div>
-                                <div style={{ width: "50%" }}>
-                                    <p>Our electronic Training and Methodological Complex is designed to ensure the security of web applications and is based on the best practices and standards in the field of information security. We offer a unique learning approach that helps students better understand web application security and learn how to prevent potential threats.</p>
-                                </div>
-                            </div>
+                            <h2>Welcome to <b>Gecko</b> - an electronic training and methodological complex for web application security!</h2>
                         </LazyShow>
-                    </LazyShow>
+                    </div>
+
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                            
+                            <div style={{ width: "50%", display: "flex", justifyContent: "end" }}>
+                                    <img src="../Logo.svg" alt="" style={{ width: "100%" }} />
+                            </div>
+                            
+                            <div style={{ width: "50%" }}>
+                                <LazyShow>
+                                    <p>Our electronic Training and Methodological Complex is designed to ensure the security of web applications and is based on the best practices and standards in the field of information security. We offer a unique learning approach that helps students better understand web application security and learn how to prevent potential threats.</p>
+                                </LazyShow>
+                            </div>
+                        </div>
                 </div>
             </div>
-            <div className="Container" style={{flexDirection: "column", marginBottom: "15vh"}}>
+            <div className="Container" style={{flexDirection: "column", marginBottom: "15vh", height: "auto"}}>
                 <AboutUsMoreContent />
             </div>
 

@@ -11,7 +11,7 @@ const LoadingDot = {
 
 const LoadingContainer = {
   width: "10rem",
-  height: "90vh",
+  height: "80vh",
   display: "flex",
   justifyContent: "space-around",
   alignItems: "center"
