@@ -12,11 +12,11 @@ function AppContent({ }: Props) {
 
     return (
         <>
-        <RedirectToLogin>
-
-            <Nav />
-            <AppRoutes />
-            
+            <RedirectToLogin>
+        
+                <Nav />
+                <AppRoutes />
+                
             </RedirectToLogin>
         </>
     )
