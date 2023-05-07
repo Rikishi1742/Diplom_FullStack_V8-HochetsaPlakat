@@ -153,21 +153,11 @@ export const CreateApolloServer = async () => {
 
   await new Promise<void>(async (resolve) => 
     {
-      const Context = PrepareContextWithAuth
       const { url } = await startStandaloneServer(server, {
-        context: Context
+        context: PrepareContextWithAuth
       } );
       httpServer.listen({port : port}, resolve)
       console.log(`🚀 Server ready at ${url}/graphql`);
     }
   );
-    
-
-/*
-    const { url } = await startStandaloneServer(server, {
-      context: async ({ req }) => ({ token: req.headers.token }),
-      listen: { port: 4000 },
-    });
-    console.log(`🚀  Server ready at ${url}`);
-*/
 };
