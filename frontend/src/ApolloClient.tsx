@@ -4,7 +4,7 @@ import apolloLogger from 'apollo-link-logger';
 import { getTokens, saveTokens } from "./manage-tokens";
 
 function backendApiUrl() {
-  return 'https://localhost:4000/graphql';
+  return 'http://localhost:4000/graphql';
 }
 
 const BACKEND_API_URL = backendApiUrl();

@@ -2,6 +2,7 @@ import ThreeDotsWave from '../Anims/three-dots-wave';
 import { useQuery } from '@apollo/client';
 import { GET_LESSON_BY_ID } from '../../GraphQL/queries';
 import TestButton from '../Education/TestButton';
+import LazyShow from '../Anims/LazyShow';
 
 
 const CourseContent = (props) => {

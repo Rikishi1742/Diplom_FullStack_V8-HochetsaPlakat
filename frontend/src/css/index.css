@@ -155,6 +155,11 @@ ul {
     margin: 12px;
   }
 
+.TitleWindow {
+  align-items: center;
+  display: flex;
+}
+
 
 .ConsoleWindow
 {

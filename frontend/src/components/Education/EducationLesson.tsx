@@ -12,7 +12,7 @@ const EducationLesson = (props) => {
         <>
             <div className="LessonSection">
                 <div>
-                    <h2>{props.items.name}</h2>
+                    <h2>{(props.items.name).toString()}</h2>
                     <p>{props.items.description}</p>
 
                     <div className='TestsSection'>

@@ -16,6 +16,19 @@
     margin-top: 15vh;
 }
 
+.AboutUsContactUs {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+}
+
+.AboutUsContactUs h2 {
+    color: #fff;
+    width: 100%;
+}
+
 
 @media screen and (max-width: 1000px) {
     .AboutUsPageContent h2 {

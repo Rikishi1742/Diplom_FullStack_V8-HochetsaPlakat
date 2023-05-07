@@ -1,12 +1,14 @@
 import LazyShow from "../Anims/LazyShow";
+import LazyShow2 from "../Anims/LazyShow2";
 import Footer from "../Footer/Footer";
+import AboutUsContactUs from "./AboutUsContactUs";
 import "./AboutUsContent.css"
 import AboutUsMoreContent from "./AboutusMoreContent";
 
 const AboutUsContent = () => {
     return (
         <>
-            <div className="Container" style={{ height: "auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div className="Container" style={{ height: "90vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="AboutUsPageContent">
                     <div className="Welcome">
                         <LazyShow>
@@ -28,8 +30,15 @@ const AboutUsContent = () => {
                         </div>
                 </div>
             </div>
-            <div className="Container" style={{flexDirection: "column", marginBottom: "15vh", height: "auto"}}>
+            <div className="Container" style={{flexDirection: "column", height: "auto"}}>
                 <AboutUsMoreContent />
+                <br />
+                <hr />
+                <br />
+            </div>
+
+            <div className="Container" style={{marginBottom: "15vh",height: "auto",flexDirection: "column"}}>
+                <AboutUsContactUs />
             </div>
 
             <Footer/>

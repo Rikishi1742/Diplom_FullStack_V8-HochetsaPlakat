@@ -2,7 +2,6 @@ const ConsoleWindow = ({ children } ) => {
     return (
         <>
                 <div className="TitleWindow">
-                    <h3></h3>
                     <div className="Design">
                         <div style={{display: "flex", flexDirection: "row"}}>
                             <p>File</p>

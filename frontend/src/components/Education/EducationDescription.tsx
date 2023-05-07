@@ -3,7 +3,7 @@ import { useQuery, gql } from '@apollo/client';
 import { GET_LESSONS } from '../../GraphQL/queries';
 import React from "react";
 import ThreeDotsWave from "../Anims/three-dots-wave";
-import LazyShow from "../Anims/LazyShow";
+import LazyShow2 from "../Anims/LazyShow2";
 
 const EducationDescription = () => {
 
@@ -22,11 +22,11 @@ const EducationDescription = () => {
         <div className='Container' style={{height: "auto", marginTop: "15vh", marginBottom: "15vh"}}>
             <div>
                 {data?.lessons?.map((lesson) => (
-                    <LazyShow>
+                    <LazyShow2>
                         <EducationLesson key={lesson}
                         items={lesson}
                         />
-                    </LazyShow>
+                    </LazyShow2>
                 ))}
             </div>
         </div>
