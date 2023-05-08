@@ -12,7 +12,8 @@ export type MethodDecoratorOverrideFn = (decorators: MethodDecorator[]) => Metho
 const crudResolversMap = {
   User: crudResolvers.UserCrudResolver,
   UserRefreshToken: crudResolvers.UserRefreshTokenCrudResolver,
-  Lesson: crudResolvers.LessonCrudResolver
+  Lesson: crudResolvers.LessonCrudResolver,
+  Test: crudResolvers.TestCrudResolver
 };
 const actionResolversMap = {
   User: {
@@ -62,12 +63,29 @@ const actionResolversMap = {
     updateManyLesson: actionResolvers.UpdateManyLessonResolver,
     updateOneLesson: actionResolvers.UpdateOneLessonResolver,
     upsertOneLesson: actionResolvers.UpsertOneLessonResolver
+  },
+  Test: {
+    aggregateTest: actionResolvers.AggregateTestResolver,
+    createManyTest: actionResolvers.CreateManyTestResolver,
+    createOneTest: actionResolvers.CreateOneTestResolver,
+    deleteManyTest: actionResolvers.DeleteManyTestResolver,
+    deleteOneTest: actionResolvers.DeleteOneTestResolver,
+    findFirstTest: actionResolvers.FindFirstTestResolver,
+    findFirstTestOrThrow: actionResolvers.FindFirstTestOrThrowResolver,
+    tests: actionResolvers.FindManyTestResolver,
+    test: actionResolvers.FindUniqueTestResolver,
+    getTest: actionResolvers.FindUniqueTestOrThrowResolver,
+    groupByTest: actionResolvers.GroupByTestResolver,
+    updateManyTest: actionResolvers.UpdateManyTestResolver,
+    updateOneTest: actionResolvers.UpdateOneTestResolver,
+    upsertOneTest: actionResolvers.UpsertOneTestResolver
   }
 };
 const crudResolversInfo = {
   User: ["aggregateUser", "createManyUser", "createOneUser", "deleteManyUser", "deleteOneUser", "findFirstUser", "findFirstUserOrThrow", "users", "user", "getUser", "groupByUser", "updateManyUser", "updateOneUser", "upsertOneUser"],
   UserRefreshToken: ["aggregateUserRefreshToken", "createManyUserRefreshToken", "createOneUserRefreshToken", "deleteManyUserRefreshToken", "deleteOneUserRefreshToken", "findFirstUserRefreshToken", "findFirstUserRefreshTokenOrThrow", "userRefreshTokens", "userRefreshToken", "getUserRefreshToken", "groupByUserRefreshToken", "updateManyUserRefreshToken", "updateOneUserRefreshToken", "upsertOneUserRefreshToken"],
-  Lesson: ["aggregateLesson", "createManyLesson", "createOneLesson", "deleteManyLesson", "deleteOneLesson", "findFirstLesson", "findFirstLessonOrThrow", "lessons", "lesson", "getLesson", "groupByLesson", "updateManyLesson", "updateOneLesson", "upsertOneLesson"]
+  Lesson: ["aggregateLesson", "createManyLesson", "createOneLesson", "deleteManyLesson", "deleteOneLesson", "findFirstLesson", "findFirstLessonOrThrow", "lessons", "lesson", "getLesson", "groupByLesson", "updateManyLesson", "updateOneLesson", "upsertOneLesson"],
+  Test: ["aggregateTest", "createManyTest", "createOneTest", "deleteManyTest", "deleteOneTest", "findFirstTest", "findFirstTestOrThrow", "tests", "test", "getTest", "groupByTest", "updateManyTest", "updateOneTest", "upsertOneTest"]
 };
 const argsInfo = {
   AggregateUserArgs: ["where", "orderBy", "cursor", "take", "skip"],
@@ -111,7 +129,21 @@ const argsInfo = {
   GroupByLessonArgs: ["where", "orderBy", "by", "having", "take", "skip"],
   UpdateManyLessonArgs: ["data", "where"],
   UpdateOneLessonArgs: ["data", "where"],
-  UpsertOneLessonArgs: ["where", "create", "update"]
+  UpsertOneLessonArgs: ["where", "create", "update"],
+  AggregateTestArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  CreateManyTestArgs: ["data"],
+  CreateOneTestArgs: ["data"],
+  DeleteManyTestArgs: ["where"],
+  DeleteOneTestArgs: ["where"],
+  FindFirstTestArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindFirstTestOrThrowArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyTestArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindUniqueTestArgs: ["where"],
+  FindUniqueTestOrThrowArgs: ["where"],
+  GroupByTestArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  UpdateManyTestArgs: ["data", "where"],
+  UpdateOneTestArgs: ["data", "where"],
+  UpsertOneTestArgs: ["where", "create", "update"]
 };
 
 type ResolverModelNames = keyof typeof crudResolversMap;
@@ -238,8 +270,13 @@ function applyTypeClassEnhanceConfig<
 const modelsInfo = {
   User: ["id", "username", "roles", "email", "name", "password", "number_of_course_completed"],
   UserRefreshToken: ["user_id", "token"],
-  Lesson: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
-  UserPasswordType: ["initialPassword", "password"]
+  Lesson: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level", "tests_id"],
+  Test: ["id", "question"],
+  UserPasswordType: ["initialPassword", "password"],
+  Tests_id: ["t1", "t2", "t3", "t4", "t5"],
+  TestQuestionType: ["question", "answer"],
+  AnswerType: ["right_answer", "wrong_answers"],
+  WrongAnswersType: ["asw1", "asw2", "asw3"]
 };
 
 type ModelNames = keyof typeof models;
@@ -284,6 +321,8 @@ const outputsInfo = {
   UserRefreshTokenGroupBy: ["user_id", "token", "_count", "_min", "_max"],
   AggregateLesson: ["_count", "_avg", "_sum", "_min", "_max"],
   LessonGroupBy: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level", "_count", "_avg", "_sum", "_min", "_max"],
+  AggregateTest: ["_count", "_min", "_max"],
+  TestGroupBy: ["id", "_count", "_min", "_max"],
   AffectedRowsOutput: ["count"],
   UserCountAggregate: ["id", "username", "roles", "email", "name", "number_of_course_completed", "_all"],
   UserMinAggregate: ["id", "username", "email", "name"],
@@ -295,7 +334,10 @@ const outputsInfo = {
   LessonAvgAggregate: ["prevelance_level", "exploit_ability_level", "impact_level"],
   LessonSumAggregate: ["prevelance_level", "exploit_ability_level", "impact_level"],
   LessonMinAggregate: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
-  LessonMaxAggregate: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"]
+  LessonMaxAggregate: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
+  TestCountAggregate: ["id", "_all"],
+  TestMinAggregate: ["id"],
+  TestMaxAggregate: ["id"]
 };
 
 type OutputTypesNames = keyof typeof outputTypes;
@@ -346,11 +388,16 @@ const inputsInfo = {
   UserRefreshTokenWhereUniqueInput: ["user_id", "token"],
   UserRefreshTokenOrderByWithAggregationInput: ["user_id", "token", "_count", "_max", "_min"],
   UserRefreshTokenScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "user_id", "token"],
-  LessonWhereInput: ["AND", "OR", "NOT", "lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
-  LessonOrderByWithRelationInput: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
+  LessonWhereInput: ["AND", "OR", "NOT", "lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level", "tests_id"],
+  LessonOrderByWithRelationInput: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level", "tests_id"],
   LessonWhereUniqueInput: ["lesson_id"],
   LessonOrderByWithAggregationInput: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level", "_count", "_avg", "_max", "_min", "_sum"],
   LessonScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
+  TestWhereInput: ["AND", "OR", "NOT", "id", "question"],
+  TestOrderByWithRelationInput: ["id", "question"],
+  TestWhereUniqueInput: ["id"],
+  TestOrderByWithAggregationInput: ["id", "_count", "_max", "_min"],
+  TestScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id"],
   UserCreateInput: ["id", "username", "roles", "email", "name", "password", "number_of_course_completed"],
   UserUpdateInput: ["username", "roles", "email", "name", "password", "number_of_course_completed"],
   UserCreateManyInput: ["id", "username", "roles", "email", "name", "password", "number_of_course_completed"],
@@ -359,10 +406,14 @@ const inputsInfo = {
   UserRefreshTokenUpdateInput: ["token"],
   UserRefreshTokenCreateManyInput: ["user_id", "token"],
   UserRefreshTokenUpdateManyMutationInput: ["token"],
-  LessonCreateInput: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
-  LessonUpdateInput: ["name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
-  LessonCreateManyInput: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
-  LessonUpdateManyMutationInput: ["name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
+  LessonCreateInput: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level", "tests_id"],
+  LessonUpdateInput: ["name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level", "tests_id"],
+  LessonCreateManyInput: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level", "tests_id"],
+  LessonUpdateManyMutationInput: ["name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level", "tests_id"],
+  TestCreateInput: ["id", "question"],
+  TestUpdateInput: ["question"],
+  TestCreateManyInput: ["id", "question"],
+  TestUpdateManyMutationInput: ["question"],
   StringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
   StringNullableListFilter: ["equals", "has", "hasEvery", "hasSome", "isEmpty"],
   StringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not", "isSet"],
@@ -378,12 +429,21 @@ const inputsInfo = {
   UserRefreshTokenMaxOrderByAggregateInput: ["user_id", "token"],
   UserRefreshTokenMinOrderByAggregateInput: ["user_id", "token"],
   IntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  Tests_idCompositeFilter: ["equals", "is", "isNot"],
+  Tests_idObjectEqualityInput: ["t1", "t2", "t3", "t4", "t5"],
+  Tests_idOrderByInput: ["t1", "t2", "t3", "t4", "t5"],
   LessonCountOrderByAggregateInput: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
   LessonAvgOrderByAggregateInput: ["prevelance_level", "exploit_ability_level", "impact_level"],
   LessonMaxOrderByAggregateInput: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
   LessonMinOrderByAggregateInput: ["lesson_id", "name", "description", "descriptionFull", "protectionDescription", "prevelance_level", "exploit_ability_level", "impact_level"],
   LessonSumOrderByAggregateInput: ["prevelance_level", "exploit_ability_level", "impact_level"],
   IntWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
+  TestQuestionTypeCompositeListFilter: ["equals", "every", "some", "none", "isEmpty", "isSet"],
+  TestQuestionTypeObjectEqualityInput: ["question", "answer"],
+  TestQuestionTypeOrderByCompositeAggregateInput: ["_count"],
+  TestCountOrderByAggregateInput: ["id"],
+  TestMaxOrderByAggregateInput: ["id"],
+  TestMinOrderByAggregateInput: ["id"],
   UserCreaterolesInput: ["set"],
   UserPasswordTypeNullableCreateEnvelopeInput: ["set"],
   UserPasswordTypeCreateInput: ["initialPassword", "password"],
@@ -393,7 +453,13 @@ const inputsInfo = {
   NullableStringFieldUpdateOperationsInput: ["set", "unset"],
   UserPasswordTypeNullableUpdateEnvelopeInput: ["set", "upsert", "unset"],
   UserUpdatenumber_of_course_completedInput: ["set", "push"],
+  Tests_idCreateEnvelopeInput: ["set"],
+  Tests_idCreateInput: ["t1", "t2", "t3", "t4", "t5"],
   IntFieldUpdateOperationsInput: ["set", "increment", "decrement", "multiply", "divide"],
+  Tests_idUpdateEnvelopeInput: ["set", "update"],
+  TestQuestionTypeListCreateEnvelopeInput: ["set"],
+  TestQuestionTypeCreateInput: ["question", "answer"],
+  TestQuestionTypeListUpdateEnvelopeInput: ["set", "push", "updateMany", "deleteMany"],
   NestedStringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
   NestedStringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "isSet"],
   UserPasswordTypeWhereInput: ["AND", "OR", "NOT", "initialPassword", "password"],
@@ -401,13 +467,31 @@ const inputsInfo = {
   NestedIntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedStringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max", "isSet"],
   NestedIntNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "isSet"],
+  Tests_idWhereInput: ["AND", "OR", "NOT", "t1", "t2", "t3", "t4", "t5"],
   NestedIntWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
   NestedFloatFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  TestQuestionTypeWhereInput: ["AND", "OR", "NOT", "question", "answer"],
+  AnswerTypeObjectEqualityInput: ["right_answer", "wrong_answers"],
   UserPasswordTypeUpsertInput: ["set", "update"],
+  Tests_idUpdateInput: ["t1", "t2", "t3", "t4", "t5"],
+  AnswerTypeCreateInput: ["right_answer", "wrong_answers"],
+  TestQuestionTypeUpdateManyInput: ["where", "data"],
+  TestQuestionTypeDeleteManyInput: ["where"],
   BoolFilter: ["equals", "not"],
+  AnswerTypeCompositeFilter: ["equals", "is", "isNot"],
+  WrongAnswersTypeObjectEqualityInput: ["asw1", "asw2", "asw3"],
   UserPasswordTypeUpdateInput: ["initialPassword", "password"],
+  WrongAnswersTypeCreateInput: ["asw1", "asw2", "asw3"],
+  TestQuestionTypeUpdateInput: ["question", "answer"],
   NestedBoolFilter: ["equals", "not"],
-  BoolFieldUpdateOperationsInput: ["set"]
+  AnswerTypeWhereInput: ["AND", "OR", "NOT", "right_answer", "wrong_answers"],
+  BoolFieldUpdateOperationsInput: ["set"],
+  AnswerTypeUpdateEnvelopeInput: ["set", "update"],
+  WrongAnswersTypeCompositeFilter: ["equals", "is", "isNot"],
+  AnswerTypeUpdateInput: ["right_answer", "wrong_answers"],
+  WrongAnswersTypeWhereInput: ["AND", "OR", "NOT", "asw1", "asw2", "asw3"],
+  WrongAnswersTypeUpdateEnvelopeInput: ["set", "update"],
+  WrongAnswersTypeUpdateInput: ["asw1", "asw2", "asw3"]
 };
 
 type InputTypesNames = keyof typeof inputTypes;

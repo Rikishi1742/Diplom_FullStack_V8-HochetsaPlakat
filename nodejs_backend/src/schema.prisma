@@ -42,5 +42,35 @@ model Lesson {
     prevelance_level Int
     exploit_ability_level Int
     impact_level Int
+
+    tests_id Tests_id
 }
 
+type Tests_id {
+    t1 String? 
+    t2 String? 
+    t3 String? 
+    t4 String? 
+    t5 String? 
+}
+
+model Test {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    question TestQuestionType[]
+}
+
+type TestQuestionType {
+    question String
+    answer AnswerType
+}
+
+type AnswerType {
+    right_answer String
+    wrong_answers WrongAnswersType
+}
+
+type WrongAnswersType {
+    asw1 String? 
+    asw2 String? 
+    asw3 String? 
+}

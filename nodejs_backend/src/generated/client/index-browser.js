@@ -107,6 +107,10 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.TestScalarFieldEnum = {
+  id: 'id'
+};
+
 exports.Prisma.UserRefreshTokenScalarFieldEnum = {
   user_id: 'user_id',
   token: 'token'
@@ -125,7 +129,8 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.ModelName = {
   User: 'User',
   UserRefreshToken: 'UserRefreshToken',
-  Lesson: 'Lesson'
+  Lesson: 'Lesson',
+  Test: 'Test'
 };
 
 /**

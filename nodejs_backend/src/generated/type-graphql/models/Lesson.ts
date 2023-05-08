@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "../../client";
 import { DecimalJSScalar } from "../scalars";
+import { Tests_id } from "../models/Tests_id";
 
 @TypeGraphQL.ObjectType("Lesson", {
   isAbstract: true
@@ -46,4 +47,9 @@ export class Lesson {
     nullable: false
   })
   impact_level!: number;
+
+  @TypeGraphQL.Field(_type => Tests_id, {
+    nullable: false
+  })
+  tests_id!: Tests_id;
 }

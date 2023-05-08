@@ -8,7 +8,7 @@ import AboutUsMoreContent from "./AboutusMoreContent";
 const AboutUsContent = () => {
     return (
         <>
-            <div className="Container" style={{ height: "90vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div className="Container" style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", backgroundImage: "" }}>
                 <div className="AboutUsPageContent">
                     <div className="Welcome">
                         <LazyShow>
@@ -16,13 +16,13 @@ const AboutUsContent = () => {
                         </LazyShow>
                     </div>
 
-                        <div style={{ display: "flex", flexDirection: "row" }}>
+                        <div className="WelcomContent">
                             
-                            <div style={{ width: "50%", display: "flex", justifyContent: "end" }}>
-                                    <img src="../Logo.svg" alt="" style={{ width: "100%" }} />
+                            <div className="gg">
+                                    <img src="../Logo.svg" alt="" />
                             </div>
                             
-                            <div style={{ width: "50%" }}>
+                            <div className="gg">
                                 <LazyShow>
                                     <p>Our electronic Training and Methodological Complex is designed to ensure the security of web applications and is based on the best practices and standards in the field of information security. We offer a unique learning approach that helps students better understand web application security and learn how to prevent potential threats.</p>
                                 </LazyShow>
@@ -33,11 +33,9 @@ const AboutUsContent = () => {
             <div className="Container" style={{flexDirection: "column", height: "auto"}}>
                 <AboutUsMoreContent />
                 <br />
-                <hr />
-                <br />
             </div>
 
-            <div className="Container" style={{marginBottom: "15vh",height: "auto",flexDirection: "column"}}>
+            <div className="Container" style={{marginBottom: "10vh",height: "auto",flexDirection: "column"}}>
                 <AboutUsContactUs />
             </div>
 

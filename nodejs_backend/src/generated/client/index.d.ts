@@ -22,6 +22,46 @@ export type UserPasswordType = {
 }
 
 /**
+ * Model Tests_id
+ * 
+ */
+export type Tests_id = {
+  t1: string | null
+  t2: string | null
+  t3: string | null
+  t4: string | null
+  t5: string | null
+}
+
+/**
+ * Model TestQuestionType
+ * 
+ */
+export type TestQuestionType = {
+  question: string
+  answer: AnswerType
+}
+
+/**
+ * Model AnswerType
+ * 
+ */
+export type AnswerType = {
+  right_answer: string
+  wrong_answers: WrongAnswersType
+}
+
+/**
+ * Model WrongAnswersType
+ * 
+ */
+export type WrongAnswersType = {
+  asw1: string | null
+  asw2: string | null
+  asw3: string | null
+}
+
+/**
  * Model User
  * 
  */
@@ -57,6 +97,16 @@ export type Lesson = {
   prevelance_level: number
   exploit_ability_level: number
   impact_level: number
+  tests_id: Tests_id
+}
+
+/**
+ * Model Test
+ * 
+ */
+export type Test = {
+  id: string
+  question: TestQuestionType[]
 }
 
 
@@ -175,6 +225,16 @@ export class PrismaClient<
     * ```
     */
   get lesson(): Prisma.LessonDelegate<GlobalReject>;
+
+  /**
+   * `prisma.test`: Exposes CRUD operations for the **Test** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tests
+    * const tests = await prisma.test.findMany()
+    * ```
+    */
+  get test(): Prisma.TestDelegate<GlobalReject>;
 }
 
 export namespace Prisma {
@@ -646,7 +706,8 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     UserRefreshToken: 'UserRefreshToken',
-    Lesson: 'Lesson'
+    Lesson: 'Lesson',
+    Test: 'Test'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -908,6 +969,424 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserPasswordType
      */
     select?: UserPasswordTypeSelect | null
+  }
+
+
+
+  /**
+   * Model Tests_id
+   */
+
+
+
+
+
+  export type Tests_idSelect = {
+    t1?: boolean
+    t2?: boolean
+    t3?: boolean
+    t4?: boolean
+    t5?: boolean
+  }
+
+
+  export type Tests_idGetPayload<S extends boolean | null | undefined | Tests_idArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? Tests_id :
+    S extends undefined ? never :
+    S extends { include: any } & (Tests_idArgs)
+    ? Tests_id 
+    : S extends { select: any } & (Tests_idArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+    P extends keyof Tests_id ? Tests_id[P] : never
+  } 
+      : Tests_id
+
+
+
+  export interface Tests_idDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+
+
+
+
+
+
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Tests_id.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__Tests_idClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * Tests_id without action
+   */
+  export type Tests_idArgs = {
+    /**
+     * Select specific fields to fetch from the Tests_id
+     */
+    select?: Tests_idSelect | null
+  }
+
+
+
+  /**
+   * Model TestQuestionType
+   */
+
+
+
+
+
+  export type TestQuestionTypeSelect = {
+    question?: boolean
+    answer?: boolean | AnswerTypeArgs
+  }
+
+
+  export type TestQuestionTypeInclude = {}
+
+  export type TestQuestionTypeGetPayload<S extends boolean | null | undefined | TestQuestionTypeArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? TestQuestionType :
+    S extends undefined ? never :
+    S extends { include: any } & (TestQuestionTypeArgs)
+    ? TestQuestionType 
+    : S extends { select: any } & (TestQuestionTypeArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+        P extends 'answer' ? AnswerTypeGetPayload<S['select'][P]> :  P extends keyof TestQuestionType ? TestQuestionType[P] : never
+  } 
+      : TestQuestionType
+
+
+
+  export interface TestQuestionTypeDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+
+
+
+
+
+
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TestQuestionType.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__TestQuestionTypeClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+    answer<T extends AnswerTypeArgs= {}>(args?: Subset<T, AnswerTypeArgs>): Prisma__AnswerTypeClient<AnswerTypeGetPayload<T> | Null>;
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * TestQuestionType without action
+   */
+  export type TestQuestionTypeArgs = {
+    /**
+     * Select specific fields to fetch from the TestQuestionType
+     */
+    select?: TestQuestionTypeSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TestQuestionTypeInclude | null
+  }
+
+
+
+  /**
+   * Model AnswerType
+   */
+
+
+
+
+
+  export type AnswerTypeSelect = {
+    right_answer?: boolean
+    wrong_answers?: boolean | WrongAnswersTypeArgs
+  }
+
+
+  export type AnswerTypeInclude = {}
+
+  export type AnswerTypeGetPayload<S extends boolean | null | undefined | AnswerTypeArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? AnswerType :
+    S extends undefined ? never :
+    S extends { include: any } & (AnswerTypeArgs)
+    ? AnswerType 
+    : S extends { select: any } & (AnswerTypeArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+        P extends 'wrong_answers' ? WrongAnswersTypeGetPayload<S['select'][P]> :  P extends keyof AnswerType ? AnswerType[P] : never
+  } 
+      : AnswerType
+
+
+
+  export interface AnswerTypeDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+
+
+
+
+
+
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AnswerType.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__AnswerTypeClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+    wrong_answers<T extends WrongAnswersTypeArgs= {}>(args?: Subset<T, WrongAnswersTypeArgs>): Prisma__WrongAnswersTypeClient<WrongAnswersTypeGetPayload<T> | Null>;
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * AnswerType without action
+   */
+  export type AnswerTypeArgs = {
+    /**
+     * Select specific fields to fetch from the AnswerType
+     */
+    select?: AnswerTypeSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AnswerTypeInclude | null
+  }
+
+
+
+  /**
+   * Model WrongAnswersType
+   */
+
+
+
+
+
+  export type WrongAnswersTypeSelect = {
+    asw1?: boolean
+    asw2?: boolean
+    asw3?: boolean
+  }
+
+
+  export type WrongAnswersTypeGetPayload<S extends boolean | null | undefined | WrongAnswersTypeArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? WrongAnswersType :
+    S extends undefined ? never :
+    S extends { include: any } & (WrongAnswersTypeArgs)
+    ? WrongAnswersType 
+    : S extends { select: any } & (WrongAnswersTypeArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+    P extends keyof WrongAnswersType ? WrongAnswersType[P] : never
+  } 
+      : WrongAnswersType
+
+
+
+  export interface WrongAnswersTypeDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+
+
+
+
+
+
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WrongAnswersType.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__WrongAnswersTypeClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * WrongAnswersType without action
+   */
+  export type WrongAnswersTypeArgs = {
+    /**
+     * Select specific fields to fetch from the WrongAnswersType
+     */
+    select?: WrongAnswersTypeSelect | null
   }
 
 
@@ -3040,8 +3519,11 @@ export namespace Prisma {
     prevelance_level?: boolean
     exploit_ability_level?: boolean
     impact_level?: boolean
+    tests_id?: boolean | Tests_idArgs
   }
 
+
+  export type LessonInclude = {}
 
   export type LessonGetPayload<S extends boolean | null | undefined | LessonArgs> =
     S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
@@ -3052,7 +3534,7 @@ export namespace Prisma {
     : S extends { select: any } & (LessonArgs | LessonFindManyArgs)
       ? {
     [P in TruthyKeys<S['select']>]:
-    P extends keyof Lesson ? Lesson[P] : never
+        P extends 'tests_id' ? Tests_idGetPayload<S['select'][P]> :  P extends keyof Lesson ? Lesson[P] : never
   } 
       : Lesson
 
@@ -3451,6 +3933,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
 
+    tests_id<T extends Tests_idArgs= {}>(args?: Subset<T, Tests_idArgs>): Prisma__Tests_idClient<Tests_idGetPayload<T> | Null>;
 
     private get _document();
     /**
@@ -3488,6 +3971,10 @@ export namespace Prisma {
      */
     select?: LessonSelect | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: LessonInclude | null
+    /**
      * Filter, which Lesson to fetch.
      */
     where: LessonWhereUniqueInput
@@ -3514,6 +4001,10 @@ export namespace Prisma {
      */
     select?: LessonSelect | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: LessonInclude | null
+    /**
      * Filter, which Lesson to fetch.
      */
     where: LessonWhereUniqueInput
@@ -3528,6 +4019,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Lesson
      */
     select?: LessonSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: LessonInclude | null
     /**
      * Filter, which Lesson to fetch.
      */
@@ -3585,6 +4080,10 @@ export namespace Prisma {
      */
     select?: LessonSelect | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: LessonInclude | null
+    /**
      * Filter, which Lesson to fetch.
      */
     where?: LessonWhereInput
@@ -3630,6 +4129,10 @@ export namespace Prisma {
      */
     select?: LessonSelect | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: LessonInclude | null
+    /**
      * Filter, which Lessons to fetch.
      */
     where?: LessonWhereInput
@@ -3670,6 +4173,10 @@ export namespace Prisma {
      */
     select?: LessonSelect | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: LessonInclude | null
+    /**
      * The data needed to create a Lesson.
      */
     data: XOR<LessonCreateInput, LessonUncheckedCreateInput>
@@ -3695,6 +4202,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Lesson
      */
     select?: LessonSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: LessonInclude | null
     /**
      * The data needed to update a Lesson.
      */
@@ -3730,6 +4241,10 @@ export namespace Prisma {
      */
     select?: LessonSelect | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: LessonInclude | null
+    /**
      * The filter to search for the Lesson to update in case it exists.
      */
     where: LessonWhereUniqueInput
@@ -3752,6 +4267,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Lesson
      */
     select?: LessonSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: LessonInclude | null
     /**
      * Filter which Lesson to delete.
      */
@@ -3808,6 +4327,960 @@ export namespace Prisma {
      * Select specific fields to fetch from the Lesson
      */
     select?: LessonSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: LessonInclude | null
+  }
+
+
+
+  /**
+   * Model Test
+   */
+
+
+  export type AggregateTest = {
+    _count: TestCountAggregateOutputType | null
+    _min: TestMinAggregateOutputType | null
+    _max: TestMaxAggregateOutputType | null
+  }
+
+  export type TestMinAggregateOutputType = {
+    id: string | null
+  }
+
+  export type TestMaxAggregateOutputType = {
+    id: string | null
+  }
+
+  export type TestCountAggregateOutputType = {
+    id: number
+    _all: number
+  }
+
+
+  export type TestMinAggregateInputType = {
+    id?: true
+  }
+
+  export type TestMaxAggregateInputType = {
+    id?: true
+  }
+
+  export type TestCountAggregateInputType = {
+    id?: true
+    _all?: true
+  }
+
+  export type TestAggregateArgs = {
+    /**
+     * Filter which Test to aggregate.
+     */
+    where?: TestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tests to fetch.
+     */
+    orderBy?: Enumerable<TestOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Tests
+    **/
+    _count?: true | TestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TestMaxAggregateInputType
+  }
+
+  export type GetTestAggregateType<T extends TestAggregateArgs> = {
+        [P in keyof T & keyof AggregateTest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTest[P]>
+      : GetScalarType<T[P], AggregateTest[P]>
+  }
+
+
+
+
+  export type TestGroupByArgs = {
+    where?: TestWhereInput
+    orderBy?: Enumerable<TestOrderByWithAggregationInput>
+    by: TestScalarFieldEnum[]
+    having?: TestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TestCountAggregateInputType | true
+    _min?: TestMinAggregateInputType
+    _max?: TestMaxAggregateInputType
+  }
+
+
+  export type TestGroupByOutputType = {
+    id: string
+    _count: TestCountAggregateOutputType | null
+    _min: TestMinAggregateOutputType | null
+    _max: TestMaxAggregateOutputType | null
+  }
+
+  type GetTestGroupByPayload<T extends TestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<TestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TestGroupByOutputType[P]>
+            : GetScalarType<T[P], TestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TestSelect = {
+    id?: boolean
+    question?: boolean | TestQuestionTypeArgs
+  }
+
+
+  export type TestInclude = {}
+
+  export type TestGetPayload<S extends boolean | null | undefined | TestArgs> =
+    S extends { select: any, include: any } ? 'Please either choose `select` or `include`' :
+    S extends true ? Test :
+    S extends undefined ? never :
+    S extends { include: any } & (TestArgs | TestFindManyArgs)
+    ? Test 
+    : S extends { select: any } & (TestArgs | TestFindManyArgs)
+      ? {
+    [P in TruthyKeys<S['select']>]:
+        P extends 'question' ? Array < TestQuestionTypeGetPayload<S['select'][P]>>  :  P extends keyof Test ? Test[P] : never
+  } 
+      : Test
+
+
+  type TestCountArgs = 
+    Omit<TestFindManyArgs, 'select' | 'include'> & {
+      select?: TestCountAggregateInputType | true
+    }
+
+  export interface TestDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+
+    /**
+     * Find zero or one Test that matches the filter.
+     * @param {TestFindUniqueArgs} args - Arguments to find a Test
+     * @example
+     * // Get one Test
+     * const test = await prisma.test.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends TestFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, TestFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'Test'> extends True ? Prisma__TestClient<TestGetPayload<T>> : Prisma__TestClient<TestGetPayload<T> | null, null>
+
+    /**
+     * Find one Test that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {TestFindUniqueOrThrowArgs} args - Arguments to find a Test
+     * @example
+     * // Get one Test
+     * const test = await prisma.test.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends TestFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, TestFindUniqueOrThrowArgs>
+    ): Prisma__TestClient<TestGetPayload<T>>
+
+    /**
+     * Find the first Test that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestFindFirstArgs} args - Arguments to find a Test
+     * @example
+     * // Get one Test
+     * const test = await prisma.test.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends TestFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, TestFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'Test'> extends True ? Prisma__TestClient<TestGetPayload<T>> : Prisma__TestClient<TestGetPayload<T> | null, null>
+
+    /**
+     * Find the first Test that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestFindFirstOrThrowArgs} args - Arguments to find a Test
+     * @example
+     * // Get one Test
+     * const test = await prisma.test.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends TestFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, TestFindFirstOrThrowArgs>
+    ): Prisma__TestClient<TestGetPayload<T>>
+
+    /**
+     * Find zero or more Tests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Tests
+     * const tests = await prisma.test.findMany()
+     * 
+     * // Get first 10 Tests
+     * const tests = await prisma.test.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const testWithIdOnly = await prisma.test.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends TestFindManyArgs>(
+      args?: SelectSubset<T, TestFindManyArgs>
+    ): Prisma.PrismaPromise<Array<TestGetPayload<T>>>
+
+    /**
+     * Create a Test.
+     * @param {TestCreateArgs} args - Arguments to create a Test.
+     * @example
+     * // Create one Test
+     * const Test = await prisma.test.create({
+     *   data: {
+     *     // ... data to create a Test
+     *   }
+     * })
+     * 
+    **/
+    create<T extends TestCreateArgs>(
+      args: SelectSubset<T, TestCreateArgs>
+    ): Prisma__TestClient<TestGetPayload<T>>
+
+    /**
+     * Create many Tests.
+     *     @param {TestCreateManyArgs} args - Arguments to create many Tests.
+     *     @example
+     *     // Create many Tests
+     *     const test = await prisma.test.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends TestCreateManyArgs>(
+      args?: SelectSubset<T, TestCreateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Test.
+     * @param {TestDeleteArgs} args - Arguments to delete one Test.
+     * @example
+     * // Delete one Test
+     * const Test = await prisma.test.delete({
+     *   where: {
+     *     // ... filter to delete one Test
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends TestDeleteArgs>(
+      args: SelectSubset<T, TestDeleteArgs>
+    ): Prisma__TestClient<TestGetPayload<T>>
+
+    /**
+     * Update one Test.
+     * @param {TestUpdateArgs} args - Arguments to update one Test.
+     * @example
+     * // Update one Test
+     * const test = await prisma.test.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends TestUpdateArgs>(
+      args: SelectSubset<T, TestUpdateArgs>
+    ): Prisma__TestClient<TestGetPayload<T>>
+
+    /**
+     * Delete zero or more Tests.
+     * @param {TestDeleteManyArgs} args - Arguments to filter Tests to delete.
+     * @example
+     * // Delete a few Tests
+     * const { count } = await prisma.test.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends TestDeleteManyArgs>(
+      args?: SelectSubset<T, TestDeleteManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Tests
+     * const test = await prisma.test.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends TestUpdateManyArgs>(
+      args: SelectSubset<T, TestUpdateManyArgs>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Test.
+     * @param {TestUpsertArgs} args - Arguments to update or create a Test.
+     * @example
+     * // Update or create a Test
+     * const test = await prisma.test.upsert({
+     *   create: {
+     *     // ... data to create a Test
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Test we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends TestUpsertArgs>(
+      args: SelectSubset<T, TestUpsertArgs>
+    ): Prisma__TestClient<TestGetPayload<T>>
+
+    /**
+     * Find zero or more Tests that matches the filter.
+     * @param {TestFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const test = await prisma.test.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+    **/
+    findRaw(
+      args?: TestFindRawArgs
+    ): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Test.
+     * @param {TestAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const test = await prisma.test.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+    **/
+    aggregateRaw(
+      args?: TestAggregateRawArgs
+    ): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Count the number of Tests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestCountArgs} args - Arguments to filter Tests to count.
+     * @example
+     * // Count the number of Tests
+     * const count = await prisma.test.count({
+     *   where: {
+     *     // ... the filter for the Tests we want to count
+     *   }
+     * })
+    **/
+    count<T extends TestCountArgs>(
+      args?: Subset<T, TestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Test.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TestAggregateArgs>(args: Subset<T, TestAggregateArgs>): Prisma.PrismaPromise<GetTestAggregateType<T>>
+
+    /**
+     * Group by Test.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TestGroupByArgs['orderBy'] }
+        : { orderBy?: TestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Test.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__TestClient<T, Null = never> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+    question<T extends TestQuestionTypeArgs= {}>(args?: Subset<T, TestQuestionTypeArgs>): Prisma.PrismaPromise<Array<TestQuestionTypeGetPayload<T>>| Null>;
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * Test base type for findUnique actions
+   */
+  export type TestFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the Test
+     */
+    select?: TestSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TestInclude | null
+    /**
+     * Filter, which Test to fetch.
+     */
+    where: TestWhereUniqueInput
+  }
+
+  /**
+   * Test findUnique
+   */
+  export interface TestFindUniqueArgs extends TestFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * Test findUniqueOrThrow
+   */
+  export type TestFindUniqueOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the Test
+     */
+    select?: TestSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TestInclude | null
+    /**
+     * Filter, which Test to fetch.
+     */
+    where: TestWhereUniqueInput
+  }
+
+
+  /**
+   * Test base type for findFirst actions
+   */
+  export type TestFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the Test
+     */
+    select?: TestSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TestInclude | null
+    /**
+     * Filter, which Test to fetch.
+     */
+    where?: TestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tests to fetch.
+     */
+    orderBy?: Enumerable<TestOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tests.
+     */
+    cursor?: TestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tests.
+     */
+    distinct?: Enumerable<TestScalarFieldEnum>
+  }
+
+  /**
+   * Test findFirst
+   */
+  export interface TestFindFirstArgs extends TestFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * Test findFirstOrThrow
+   */
+  export type TestFindFirstOrThrowArgs = {
+    /**
+     * Select specific fields to fetch from the Test
+     */
+    select?: TestSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TestInclude | null
+    /**
+     * Filter, which Test to fetch.
+     */
+    where?: TestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tests to fetch.
+     */
+    orderBy?: Enumerable<TestOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tests.
+     */
+    cursor?: TestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tests.
+     */
+    distinct?: Enumerable<TestScalarFieldEnum>
+  }
+
+
+  /**
+   * Test findMany
+   */
+  export type TestFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the Test
+     */
+    select?: TestSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TestInclude | null
+    /**
+     * Filter, which Tests to fetch.
+     */
+    where?: TestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tests to fetch.
+     */
+    orderBy?: Enumerable<TestOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Tests.
+     */
+    cursor?: TestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tests.
+     */
+    skip?: number
+    distinct?: Enumerable<TestScalarFieldEnum>
+  }
+
+
+  /**
+   * Test create
+   */
+  export type TestCreateArgs = {
+    /**
+     * Select specific fields to fetch from the Test
+     */
+    select?: TestSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TestInclude | null
+    /**
+     * The data needed to create a Test.
+     */
+    data: XOR<TestCreateInput, TestUncheckedCreateInput>
+  }
+
+
+  /**
+   * Test createMany
+   */
+  export type TestCreateManyArgs = {
+    /**
+     * The data used to create many Tests.
+     */
+    data: Enumerable<TestCreateManyInput>
+  }
+
+
+  /**
+   * Test update
+   */
+  export type TestUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the Test
+     */
+    select?: TestSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TestInclude | null
+    /**
+     * The data needed to update a Test.
+     */
+    data: XOR<TestUpdateInput, TestUncheckedUpdateInput>
+    /**
+     * Choose, which Test to update.
+     */
+    where: TestWhereUniqueInput
+  }
+
+
+  /**
+   * Test updateMany
+   */
+  export type TestUpdateManyArgs = {
+    /**
+     * The data used to update Tests.
+     */
+    data: XOR<TestUpdateManyMutationInput, TestUncheckedUpdateManyInput>
+    /**
+     * Filter which Tests to update
+     */
+    where?: TestWhereInput
+  }
+
+
+  /**
+   * Test upsert
+   */
+  export type TestUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the Test
+     */
+    select?: TestSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TestInclude | null
+    /**
+     * The filter to search for the Test to update in case it exists.
+     */
+    where: TestWhereUniqueInput
+    /**
+     * In case the Test found by the `where` argument doesn't exist, create a new Test with this data.
+     */
+    create: XOR<TestCreateInput, TestUncheckedCreateInput>
+    /**
+     * In case the Test was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TestUpdateInput, TestUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Test delete
+   */
+  export type TestDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the Test
+     */
+    select?: TestSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TestInclude | null
+    /**
+     * Filter which Test to delete.
+     */
+    where: TestWhereUniqueInput
+  }
+
+
+  /**
+   * Test deleteMany
+   */
+  export type TestDeleteManyArgs = {
+    /**
+     * Filter which Tests to delete
+     */
+    where?: TestWhereInput
+  }
+
+
+  /**
+   * Test findRaw
+   */
+  export type TestFindRawArgs = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+
+  /**
+   * Test aggregateRaw
+   */
+  export type TestAggregateRawArgs = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+
+  /**
+   * Test without action
+   */
+  export type TestArgs = {
+    /**
+     * Select specific fields to fetch from the Test
+     */
+    select?: TestSelect | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TestInclude | null
   }
 
 
@@ -3847,6 +5320,13 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const TestScalarFieldEnum: {
+    id: 'id'
+  };
+
+  export type TestScalarFieldEnum = (typeof TestScalarFieldEnum)[keyof typeof TestScalarFieldEnum]
 
 
   export const UserRefreshTokenScalarFieldEnum: {
@@ -3972,6 +5452,7 @@ export namespace Prisma {
     prevelance_level?: IntFilter | number
     exploit_ability_level?: IntFilter | number
     impact_level?: IntFilter | number
+    tests_id?: XOR<Tests_idCompositeFilter, Tests_idObjectEqualityInput>
   }
 
   export type LessonOrderByWithRelationInput = {
@@ -3983,6 +5464,7 @@ export namespace Prisma {
     prevelance_level?: SortOrder
     exploit_ability_level?: SortOrder
     impact_level?: SortOrder
+    tests_id?: Tests_idOrderByInput
   }
 
   export type LessonWhereUniqueInput = {
@@ -4017,6 +5499,37 @@ export namespace Prisma {
     prevelance_level?: IntWithAggregatesFilter | number
     exploit_ability_level?: IntWithAggregatesFilter | number
     impact_level?: IntWithAggregatesFilter | number
+  }
+
+  export type TestWhereInput = {
+    AND?: Enumerable<TestWhereInput>
+    OR?: Enumerable<TestWhereInput>
+    NOT?: Enumerable<TestWhereInput>
+    id?: StringFilter | string
+    question?: XOR<TestQuestionTypeCompositeListFilter, Enumerable<TestQuestionTypeObjectEqualityInput>>
+  }
+
+  export type TestOrderByWithRelationInput = {
+    id?: SortOrder
+    question?: TestQuestionTypeOrderByCompositeAggregateInput
+  }
+
+  export type TestWhereUniqueInput = {
+    id?: string
+  }
+
+  export type TestOrderByWithAggregationInput = {
+    id?: SortOrder
+    _count?: TestCountOrderByAggregateInput
+    _max?: TestMaxOrderByAggregateInput
+    _min?: TestMinOrderByAggregateInput
+  }
+
+  export type TestScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<TestScalarWhereWithAggregatesInput>
+    OR?: Enumerable<TestScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<TestScalarWhereWithAggregatesInput>
+    id?: StringWithAggregatesFilter | string
   }
 
   export type UserCreateInput = {
@@ -4125,6 +5638,7 @@ export namespace Prisma {
     prevelance_level: number
     exploit_ability_level: number
     impact_level: number
+    tests_id: XOR<Tests_idCreateEnvelopeInput, Tests_idCreateInput>
   }
 
   export type LessonUncheckedCreateInput = {
@@ -4136,6 +5650,7 @@ export namespace Prisma {
     prevelance_level: number
     exploit_ability_level: number
     impact_level: number
+    tests_id: XOR<Tests_idCreateEnvelopeInput, Tests_idCreateInput>
   }
 
   export type LessonUpdateInput = {
@@ -4146,6 +5661,7 @@ export namespace Prisma {
     prevelance_level?: IntFieldUpdateOperationsInput | number
     exploit_ability_level?: IntFieldUpdateOperationsInput | number
     impact_level?: IntFieldUpdateOperationsInput | number
+    tests_id?: XOR<Tests_idUpdateEnvelopeInput, Tests_idCreateInput>
   }
 
   export type LessonUncheckedUpdateInput = {
@@ -4156,6 +5672,7 @@ export namespace Prisma {
     prevelance_level?: IntFieldUpdateOperationsInput | number
     exploit_ability_level?: IntFieldUpdateOperationsInput | number
     impact_level?: IntFieldUpdateOperationsInput | number
+    tests_id?: XOR<Tests_idUpdateEnvelopeInput, Tests_idCreateInput>
   }
 
   export type LessonCreateManyInput = {
@@ -4167,6 +5684,7 @@ export namespace Prisma {
     prevelance_level: number
     exploit_ability_level: number
     impact_level: number
+    tests_id: XOR<Tests_idCreateEnvelopeInput, Tests_idCreateInput>
   }
 
   export type LessonUpdateManyMutationInput = {
@@ -4177,6 +5695,7 @@ export namespace Prisma {
     prevelance_level?: IntFieldUpdateOperationsInput | number
     exploit_ability_level?: IntFieldUpdateOperationsInput | number
     impact_level?: IntFieldUpdateOperationsInput | number
+    tests_id?: XOR<Tests_idUpdateEnvelopeInput, Tests_idCreateInput>
   }
 
   export type LessonUncheckedUpdateManyInput = {
@@ -4187,6 +5706,38 @@ export namespace Prisma {
     prevelance_level?: IntFieldUpdateOperationsInput | number
     exploit_ability_level?: IntFieldUpdateOperationsInput | number
     impact_level?: IntFieldUpdateOperationsInput | number
+    tests_id?: XOR<Tests_idUpdateEnvelopeInput, Tests_idCreateInput>
+  }
+
+  export type TestCreateInput = {
+    id?: string
+    question?: XOR<TestQuestionTypeListCreateEnvelopeInput, Enumerable<TestQuestionTypeCreateInput>>
+  }
+
+  export type TestUncheckedCreateInput = {
+    id?: string
+    question?: XOR<TestQuestionTypeListCreateEnvelopeInput, Enumerable<TestQuestionTypeCreateInput>>
+  }
+
+  export type TestUpdateInput = {
+    question?: XOR<TestQuestionTypeListUpdateEnvelopeInput, Enumerable<TestQuestionTypeCreateInput>>
+  }
+
+  export type TestUncheckedUpdateInput = {
+    question?: XOR<TestQuestionTypeListUpdateEnvelopeInput, Enumerable<TestQuestionTypeCreateInput>>
+  }
+
+  export type TestCreateManyInput = {
+    id?: string
+    question?: XOR<TestQuestionTypeListCreateEnvelopeInput, Enumerable<TestQuestionTypeCreateInput>>
+  }
+
+  export type TestUpdateManyMutationInput = {
+    question?: XOR<TestQuestionTypeListUpdateEnvelopeInput, Enumerable<TestQuestionTypeCreateInput>>
+  }
+
+  export type TestUncheckedUpdateManyInput = {
+    question?: XOR<TestQuestionTypeListUpdateEnvelopeInput, Enumerable<TestQuestionTypeCreateInput>>
   }
 
   export type StringFilter = {
@@ -4331,6 +5882,28 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
+  export type Tests_idCompositeFilter = {
+    equals?: Tests_idObjectEqualityInput
+    is?: Tests_idWhereInput
+    isNot?: Tests_idWhereInput
+  }
+
+  export type Tests_idObjectEqualityInput = {
+    t1?: string | null
+    t2?: string | null
+    t3?: string | null
+    t4?: string | null
+    t5?: string | null
+  }
+
+  export type Tests_idOrderByInput = {
+    t1?: SortOrder
+    t2?: SortOrder
+    t3?: SortOrder
+    t4?: SortOrder
+    t5?: SortOrder
+  }
+
   export type LessonCountOrderByAggregateInput = {
     lesson_id?: SortOrder
     name?: SortOrder
@@ -4392,6 +5965,36 @@ export namespace Prisma {
     _max?: NestedIntFilter
   }
 
+  export type TestQuestionTypeCompositeListFilter = {
+    equals?: Enumerable<TestQuestionTypeObjectEqualityInput>
+    every?: TestQuestionTypeWhereInput
+    some?: TestQuestionTypeWhereInput
+    none?: TestQuestionTypeWhereInput
+    isEmpty?: boolean
+    isSet?: boolean
+  }
+
+  export type TestQuestionTypeObjectEqualityInput = {
+    question: string
+    answer: AnswerTypeObjectEqualityInput
+  }
+
+  export type TestQuestionTypeOrderByCompositeAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TestCountOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type TestMaxOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type TestMinOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type UserCreaterolesInput = {
     set: Enumerable<string>
   }
@@ -4434,12 +6037,45 @@ export namespace Prisma {
     push?: string | Enumerable<string>
   }
 
+  export type Tests_idCreateEnvelopeInput = {
+    set?: Tests_idCreateInput
+  }
+
+  export type Tests_idCreateInput = {
+    t1?: string | null
+    t2?: string | null
+    t3?: string | null
+    t4?: string | null
+    t5?: string | null
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type Tests_idUpdateEnvelopeInput = {
+    set?: Tests_idCreateInput
+    update?: Tests_idUpdateInput
+  }
+
+  export type TestQuestionTypeListCreateEnvelopeInput = {
+    set?: Enumerable<TestQuestionTypeCreateInput>
+  }
+
+  export type TestQuestionTypeCreateInput = {
+    question: string
+    answer: AnswerTypeCreateInput
+  }
+
+  export type TestQuestionTypeListUpdateEnvelopeInput = {
+    set?: Enumerable<TestQuestionTypeCreateInput>
+    push?: Enumerable<TestQuestionTypeCreateInput>
+    updateMany?: TestQuestionTypeUpdateManyInput
+    deleteMany?: TestQuestionTypeDeleteManyInput
   }
 
   export type NestedStringFilter = {
@@ -4537,6 +6173,17 @@ export namespace Prisma {
     isSet?: boolean
   }
 
+  export type Tests_idWhereInput = {
+    AND?: Enumerable<Tests_idWhereInput>
+    OR?: Enumerable<Tests_idWhereInput>
+    NOT?: Enumerable<Tests_idWhereInput>
+    t1?: StringNullableFilter | string | null
+    t2?: StringNullableFilter | string | null
+    t3?: StringNullableFilter | string | null
+    t4?: StringNullableFilter | string | null
+    t5?: StringNullableFilter | string | null
+  }
+
   export type NestedIntWithAggregatesFilter = {
     equals?: number
     in?: Enumerable<number>
@@ -4564,9 +6211,44 @@ export namespace Prisma {
     not?: NestedFloatFilter | number
   }
 
+  export type TestQuestionTypeWhereInput = {
+    AND?: Enumerable<TestQuestionTypeWhereInput>
+    OR?: Enumerable<TestQuestionTypeWhereInput>
+    NOT?: Enumerable<TestQuestionTypeWhereInput>
+    question?: StringFilter | string
+    answer?: XOR<AnswerTypeCompositeFilter, AnswerTypeObjectEqualityInput>
+  }
+
+  export type AnswerTypeObjectEqualityInput = {
+    right_answer: string
+    wrong_answers: WrongAnswersTypeObjectEqualityInput
+  }
+
   export type UserPasswordTypeUpsertInput = {
     set: UserPasswordTypeCreateInput | null
     update: UserPasswordTypeUpdateInput
+  }
+
+  export type Tests_idUpdateInput = {
+    t1?: NullableStringFieldUpdateOperationsInput | string | null
+    t2?: NullableStringFieldUpdateOperationsInput | string | null
+    t3?: NullableStringFieldUpdateOperationsInput | string | null
+    t4?: NullableStringFieldUpdateOperationsInput | string | null
+    t5?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AnswerTypeCreateInput = {
+    right_answer: string
+    wrong_answers: WrongAnswersTypeCreateInput
+  }
+
+  export type TestQuestionTypeUpdateManyInput = {
+    where: TestQuestionTypeWhereInput
+    data: TestQuestionTypeUpdateInput
+  }
+
+  export type TestQuestionTypeDeleteManyInput = {
+    where: TestQuestionTypeWhereInput
   }
 
   export type BoolFilter = {
@@ -4574,9 +6256,32 @@ export namespace Prisma {
     not?: NestedBoolFilter | boolean
   }
 
+  export type AnswerTypeCompositeFilter = {
+    equals?: AnswerTypeObjectEqualityInput
+    is?: AnswerTypeWhereInput
+    isNot?: AnswerTypeWhereInput
+  }
+
+  export type WrongAnswersTypeObjectEqualityInput = {
+    asw1?: string | null
+    asw2?: string | null
+    asw3?: string | null
+  }
+
   export type UserPasswordTypeUpdateInput = {
     initialPassword?: BoolFieldUpdateOperationsInput | boolean
     password?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WrongAnswersTypeCreateInput = {
+    asw1?: string | null
+    asw2?: string | null
+    asw3?: string | null
+  }
+
+  export type TestQuestionTypeUpdateInput = {
+    question?: StringFieldUpdateOperationsInput | string
+    answer?: XOR<AnswerTypeUpdateEnvelopeInput, AnswerTypeCreateInput>
   }
 
   export type NestedBoolFilter = {
@@ -4584,8 +6289,52 @@ export namespace Prisma {
     not?: NestedBoolFilter | boolean
   }
 
+  export type AnswerTypeWhereInput = {
+    AND?: Enumerable<AnswerTypeWhereInput>
+    OR?: Enumerable<AnswerTypeWhereInput>
+    NOT?: Enumerable<AnswerTypeWhereInput>
+    right_answer?: StringFilter | string
+    wrong_answers?: XOR<WrongAnswersTypeCompositeFilter, WrongAnswersTypeObjectEqualityInput>
+  }
+
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type AnswerTypeUpdateEnvelopeInput = {
+    set?: AnswerTypeCreateInput
+    update?: AnswerTypeUpdateInput
+  }
+
+  export type WrongAnswersTypeCompositeFilter = {
+    equals?: WrongAnswersTypeObjectEqualityInput
+    is?: WrongAnswersTypeWhereInput
+    isNot?: WrongAnswersTypeWhereInput
+  }
+
+  export type AnswerTypeUpdateInput = {
+    right_answer?: StringFieldUpdateOperationsInput | string
+    wrong_answers?: XOR<WrongAnswersTypeUpdateEnvelopeInput, WrongAnswersTypeCreateInput>
+  }
+
+  export type WrongAnswersTypeWhereInput = {
+    AND?: Enumerable<WrongAnswersTypeWhereInput>
+    OR?: Enumerable<WrongAnswersTypeWhereInput>
+    NOT?: Enumerable<WrongAnswersTypeWhereInput>
+    asw1?: StringNullableFilter | string | null
+    asw2?: StringNullableFilter | string | null
+    asw3?: StringNullableFilter | string | null
+  }
+
+  export type WrongAnswersTypeUpdateEnvelopeInput = {
+    set?: WrongAnswersTypeCreateInput
+    update?: WrongAnswersTypeUpdateInput
+  }
+
+  export type WrongAnswersTypeUpdateInput = {
+    asw1?: NullableStringFieldUpdateOperationsInput | string | null
+    asw2?: NullableStringFieldUpdateOperationsInput | string | null
+    asw3?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

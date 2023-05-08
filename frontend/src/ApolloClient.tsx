@@ -2,6 +2,7 @@ import { ApolloClient, ApolloLink, from, HttpLink, InMemoryCache } from "@apollo
 
 import apolloLogger from 'apollo-link-logger';
 import { getTokens, saveTokens } from "./manage-tokens";
+import { Ngrok } from '@ngrok/ngrok-api';
 
 function backendApiUrl() {
   return 'http://localhost:4000/graphql';
@@ -57,7 +58,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 });
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql", // https://diplom-full-stack-v8-hochetsa-plakat-g4x9.vercel.app/graphql
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
   link: from([apolloLogger, authMiddleware, httpLink])
 });

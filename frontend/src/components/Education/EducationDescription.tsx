@@ -15,8 +15,6 @@ const EducationDescription = () => {
         </>
     )
         
-
-
     return (
 
         <div className='Container' style={{height: "auto", marginTop: "15vh", marginBottom: "15vh"}}>

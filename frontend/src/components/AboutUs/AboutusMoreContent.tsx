@@ -6,7 +6,7 @@ const AboutUsMoreContent = () => {
     return (
         <>
             <LazyShow>
-                <div style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
+                <div className="gg" style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
                     <div style={{width: "45%", height:"auto"}}>
                         <p>Our instructors are highly qualified professionals with many years of experience in the field of information security. They will help you learn how to properly configure web applications, protect them from possible attacks, and analyze system security.</p>
                     </div>

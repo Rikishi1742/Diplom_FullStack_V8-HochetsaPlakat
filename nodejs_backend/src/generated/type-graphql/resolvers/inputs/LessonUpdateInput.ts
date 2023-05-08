@@ -4,6 +4,7 @@ import { Prisma } from "../../../client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFieldUpdateOperationsInput } from "../inputs/IntFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
+import { Tests_idUpdateEnvelopeInput } from "../inputs/Tests_idUpdateEnvelopeInput";
 
 @TypeGraphQL.InputType("LessonUpdateInput", {
   isAbstract: true
@@ -43,4 +44,9 @@ export class LessonUpdateInput {
     nullable: true
   })
   impact_level?: IntFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => Tests_idUpdateEnvelopeInput, {
+    nullable: true
+  })
+  tests_id?: Tests_idUpdateEnvelopeInput | undefined;
 }

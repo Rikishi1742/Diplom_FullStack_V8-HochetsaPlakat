@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "../../../client";
 import { DecimalJSScalar } from "../../scalars";
+import { Tests_idCreateEnvelopeInput } from "../inputs/Tests_idCreateEnvelopeInput";
 
 @TypeGraphQL.InputType("LessonCreateManyInput", {
   isAbstract: true
@@ -46,4 +47,9 @@ export class LessonCreateManyInput {
     nullable: false
   })
   impact_level!: number;
+
+  @TypeGraphQL.Field(_type => Tests_idCreateEnvelopeInput, {
+    nullable: false
+  })
+  tests_id!: Tests_idCreateEnvelopeInput;
 }

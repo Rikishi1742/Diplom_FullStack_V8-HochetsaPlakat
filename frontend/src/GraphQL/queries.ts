@@ -40,15 +40,41 @@ query GetUser($where: UserWhereUniqueInput!) {
 `;
 
 export const GET_LESSON_BY_ID = gql`
-query Query($where: LessonWhereUniqueInput!) {
+query GetLesson($where: LessonWhereUniqueInput!) {
   lesson(where: $where) {
     name
     description
     descriptionFull
     protectionDescription
     exploit_ability_level
-    impact_level
     prevelance_level
+    impact_level
+    tests_id {
+      t1
+      t2
+      t3
+      t4
+      t5
+    }
   }
 }
+`;
+
+export const GET_TEST_BY_ID = gql`
+query GetTest($where: TestWhereUniqueInput!) {
+  getTest(where: $where) {
+    question {
+      question
+      answer {
+        right_answer
+        wrong_answers {
+          asw1
+          asw2
+          asw3
+        }
+      }
+    }
+  }
+}
+
 `;

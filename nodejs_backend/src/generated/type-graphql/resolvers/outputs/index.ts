@@ -1,5 +1,6 @@
 export { AffectedRowsOutput } from "./AffectedRowsOutput";
 export { AggregateLesson } from "./AggregateLesson";
+export { AggregateTest } from "./AggregateTest";
 export { AggregateUser } from "./AggregateUser";
 export { AggregateUserRefreshToken } from "./AggregateUserRefreshToken";
 export { LessonAvgAggregate } from "./LessonAvgAggregate";
@@ -8,6 +9,10 @@ export { LessonGroupBy } from "./LessonGroupBy";
 export { LessonMaxAggregate } from "./LessonMaxAggregate";
 export { LessonMinAggregate } from "./LessonMinAggregate";
 export { LessonSumAggregate } from "./LessonSumAggregate";
+export { TestCountAggregate } from "./TestCountAggregate";
+export { TestGroupBy } from "./TestGroupBy";
+export { TestMaxAggregate } from "./TestMaxAggregate";
+export { TestMinAggregate } from "./TestMinAggregate";
 export { UserCountAggregate } from "./UserCountAggregate";
 export { UserGroupBy } from "./UserGroupBy";
 export { UserMaxAggregate } from "./UserMaxAggregate";

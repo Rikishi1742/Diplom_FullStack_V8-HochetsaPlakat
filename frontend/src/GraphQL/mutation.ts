@@ -33,6 +33,15 @@ mutation createOneLesson($data: LessonCreateInput!) {
       description
       question
     }
-}`; 
+}
+`; 
+
+export const CREATE_TEST = gql`
+mutation createOneTest($data: TestCreateInput!) {
+  createOneTest(data: $data) {
+    id
+  }
+}
+`;
 
 

@@ -20,7 +20,6 @@ const MainInfoContent = () => {
                     - Secure Network Management <br />
                     - Final control <br />
                     </p>
-                    <Button Value="Apply for a course"></Button>
                 </div>
             </div>
         </div>

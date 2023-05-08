@@ -4,6 +4,7 @@ import { Prisma } from "../../../client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFilter } from "../inputs/IntFilter";
 import { StringFilter } from "../inputs/StringFilter";
+import { Tests_idCompositeFilter } from "../inputs/Tests_idCompositeFilter";
 
 @TypeGraphQL.InputType("LessonWhereInput", {
   isAbstract: true
@@ -63,4 +64,9 @@ export class LessonWhereInput {
     nullable: true
   })
   impact_level?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => Tests_idCompositeFilter, {
+    nullable: true
+  })
+  tests_id?: Tests_idCompositeFilter | undefined;
 }

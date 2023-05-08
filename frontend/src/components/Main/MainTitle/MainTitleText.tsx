@@ -11,6 +11,7 @@ const MainTitleText = () => {
                     complex for testing information 
                     systems
                 </p>
+                
                 <Button Value="Education" href="/Education"></Button>
         </div>
     );

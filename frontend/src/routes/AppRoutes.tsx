@@ -12,6 +12,7 @@ import NotFoundPage from '../pages/NotFoundPage';
 import Account from '../pages/Account';
 import Settings from '../pages/Settings';
 import Course from '../pages/Course';
+import Test from '../pages/Test';
 
 type Props = {
     children?: React.ReactNode
@@ -29,6 +30,7 @@ function AppRoutes({ children }: Props) {
                 <Route path="/account/:UserId" element={<Account />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/courseId/:id" element={<Course />} />
+                <Route path="/test/:id" element={<Test />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </Suspense>

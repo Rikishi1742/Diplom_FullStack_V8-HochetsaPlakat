@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "../../../client";
 import { DecimalJSScalar } from "../../scalars";
+import { Tests_idOrderByInput } from "../inputs/Tests_idOrderByInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("LessonOrderByWithRelationInput", {
@@ -47,4 +48,9 @@ export class LessonOrderByWithRelationInput {
     nullable: true
   })
   impact_level?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => Tests_idOrderByInput, {
+    nullable: true
+  })
+  tests_id?: Tests_idOrderByInput | undefined;
 }

@@ -29,6 +29,49 @@
     width: 100%;
 }
 
+.MainContentAboutUs {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.MainContentAboutUs .lazy-div {
+    height: 100%;
+    width: 100%;
+}
+
+.MainContentAboutUs .lazy-div .ConsoleWindow p {
+    height: calc(100% - 20px);
+    width: calc(100% - 25px);
+}
+
+.WelcomContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.WelcomContent .gg
+{
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.WelcomContent .gg img
+{
+    width: 100%;
+}
+
+.WelcomContent .gg2 {
+    width: 50%;
+}
+
+.MainContentAboutUs .wrap {
+    width: 45%;
+}
 
 @media screen and (max-width: 1000px) {
     .AboutUsPageContent h2 {
@@ -49,6 +92,36 @@
     .Container .lazy-div {
         width: 100% !important;
         height: auto !important;
+    }
+
+    .AboutUsPageContent .Welcome {
+        margin-top: 0;
+    }
+
+    .WelcomContent {
+        flex-direction: column-reverse;
+    } 
+
+    .WelcomContent .gg
+    {
+        width: 100%;
+    }
+
+    .WelcomContent .gg img
+    {
+        width: 50%;
+    }
+
+    .MainContentAboutUs {
+        flex-direction: column;
+    }
+
+    .MainContentAboutUs .wrap {
+        width: 100%;
+    }
+
+    .MainContentAboutUs .wrap:last-child {
+        margin-top: 40px;
     }
 
 }

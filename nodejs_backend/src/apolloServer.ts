@@ -15,6 +15,8 @@ import { prisma } from "./prismaInit";
 import { checkAccessToken, checkRefreshTokenAndGenerateNewAccessToken } from "./auth/authHelper";
 import { startStandaloneServer } from '@apollo/server/standalone';
 
+import { Ngrok } from '@ngrok/ngrok-api';
+
 interface Context {
   prisma: PrismaClient;
   user: object | null;
@@ -143,21 +145,31 @@ export const CreateApolloServer = async () => {
     })
   );
 
-/*
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: port }, resolve)
   );
-  console.log(`🚀 Server ready at http://localhost:${port}/graphql`);
-*/
 
+  var ngrok = require("@ngrok/ngrok");
+
+  ngrok.connect({addr: 4000, authtoken_from_env: true}).then((url) => {
+    console.log(`🚀 Server ready at http://localhost:${port}/graphql`);
+    console.log(`🚀 Proxy ready at ${url}/graphql`);
+  });
+
+/*
+  const ngrok = require('ngrok');
+  (async function() {
+    const url = await ngrok.connect();
+  })();
 
   await new Promise<void>(async (resolve) => 
     {
       const { url } = await startStandaloneServer(server, {
         context: PrepareContextWithAuth
-      } );
+      });
       httpServer.listen({port : port}, resolve)
       console.log(`🚀 Server ready at ${url}/graphql`);
     }
   );
+  */
 };
