@@ -21,7 +21,7 @@ const CourseContent = (props) => {
         <>
             <ThreeDotsWave />
         </>
-    )
+    ) 
 
     const firstTest = data?.lesson.tests_id.t1
 
