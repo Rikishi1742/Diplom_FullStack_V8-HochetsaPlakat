@@ -13,7 +13,7 @@ const EducationLesson = (props) => {
             <div className="LessonSection">
                 <div>
                     <h2>{(props.items.name).toString()}</h2>
-                    <p>{props.items.description}</p>
+                    <p>{(props.items.description).toString()}</p>
 
                     <div className='TestsSection'>
                         <TestButton PrevalenceLevel={props.items.prevelance_level} ExploitAbilityLevel={props.items.exploit_ability_level} ImpactLevel={props.items.impact_level} />

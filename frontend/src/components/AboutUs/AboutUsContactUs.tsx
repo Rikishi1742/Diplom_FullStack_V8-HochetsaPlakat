@@ -9,9 +9,12 @@ const AboutUsContactUs = () => {
             <div className="MainContentAboutUs">
                 <div className="wrap">
                     
-                    <p>Email: Gecko123@ggmail.ru </p>
-                    <p>User Care Department: +7 80 333 26 05</p>
-                    <p>Contact Center: +7 800 555 35 35</p>
+                    <p>Email:  <br />
+                    Gecko123@ggmail.ru </p>
+                    <p>User Care Department: <br />
+                    +7 80 333 26 05</p>
+                    <p>Contact Center: <br />
+                    +7 800 555 35 35</p>
                     <p>Cheboksary, avenue. Mira, 40</p>
                     
                 </div>

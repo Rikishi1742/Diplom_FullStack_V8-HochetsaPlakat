@@ -2,13 +2,12 @@ import { useParams } from "react-router-dom";
 import TestContent from "../components/Test/TestContent";
 
 type Props = {}
+
 const Test = ({}: Props) => {
-
-    const TestId = useParams();
+    const { id } = useParams();
     
-
     return (
-        <TestContent Id={TestId}/> 
+        <TestContent id={id}/> 
     );
 }
 

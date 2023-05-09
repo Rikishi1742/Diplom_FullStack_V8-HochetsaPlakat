@@ -13,8 +13,6 @@ const CourseContent = (props) => {
     const { loading, error, data } = useQuery(GET_LESSON_BY_ID, {
         variables: {"where": { "lesson_id": CourseId }}
     });
-
-    console.log(CourseId)
     
     
     if (loading) return (

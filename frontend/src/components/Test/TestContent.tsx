@@ -4,7 +4,7 @@ import ThreeDotsWave from "../../components/Anims/three-dots-wave";
 
 const TestContent = (props) => {
 
-    const TestId  = props.Id;
+    const TestId  = props.id;
     const { loading, error, data } = useQuery(GET_TEST_BY_ID, {
         variables: {"where": { "id": TestId }}
     });
@@ -14,12 +14,10 @@ const TestContent = (props) => {
             <ThreeDotsWave />
         </>
     )
-    
-    console.log(TestId)
 
     return (
         <>
-            <h2>{data?.getTest}</h2>
+            <h2>{data?.getTest.question.question}</h2>
         </>    
     );
 }
