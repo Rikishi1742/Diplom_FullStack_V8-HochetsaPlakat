@@ -12,7 +12,7 @@ export class TestQuestionTypeUpdateInput {
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
-  question?: StringFieldUpdateOperationsInput | undefined;
+  question_name?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => AnswerTypeUpdateEnvelopeInput, {
     nullable: true

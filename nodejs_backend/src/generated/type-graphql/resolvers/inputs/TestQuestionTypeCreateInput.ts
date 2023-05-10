@@ -11,7 +11,7 @@ export class TestQuestionTypeCreateInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  question!: string;
+  question_name!: string;
 
   @TypeGraphQL.Field(_type => AnswerTypeCreateInput, {
     nullable: false

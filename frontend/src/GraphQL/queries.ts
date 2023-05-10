@@ -64,7 +64,7 @@ export const GET_TEST_BY_ID = gql`
 query GetTest($where: TestWhereUniqueInput!) {
   getTest(where: $where) {
     question {
-      question
+      question_name
       answer {
         right_answer
         wrong_answers {

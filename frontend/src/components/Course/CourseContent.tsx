@@ -5,6 +5,7 @@ import TestButton from '../Education/TestButton';
 import LazyShow from '../Anims/LazyShow';
 import Button from '../Elements/Button';
 import { json } from 'stream/consumers';
+import TestSelection from './TestSelection/TestSelection';
 
 
 const CourseContent = (props) => {
@@ -13,7 +14,6 @@ const CourseContent = (props) => {
     const { loading, error, data } = useQuery(GET_LESSON_BY_ID, {
         variables: {"where": { "lesson_id": CourseId }}
     });
-    
     
     if (loading) return (
         <>
@@ -49,7 +49,7 @@ const CourseContent = (props) => {
 
                     <p>{data?.lesson.protectionDescription}</p>
 
-                    <Button Value="Test yourself" href={'/test/' + firstTest}></Button>
+                    <TestSelection testId={data?.lesson.tests_id}/>
                     
                 </div>
             </div>

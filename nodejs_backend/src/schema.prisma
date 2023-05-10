@@ -60,7 +60,7 @@ model Test {
 }
 
 type TestQuestionType {
-    question String
+    question_name String
     answer AnswerType
 }
 

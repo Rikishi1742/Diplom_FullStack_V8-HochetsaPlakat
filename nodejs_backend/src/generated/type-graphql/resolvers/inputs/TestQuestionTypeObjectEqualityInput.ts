@@ -11,7 +11,7 @@ export class TestQuestionTypeObjectEqualityInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
-  question!: string;
+  question_name!: string;
 
   @TypeGraphQL.Field(_type => AnswerTypeObjectEqualityInput, {
     nullable: false

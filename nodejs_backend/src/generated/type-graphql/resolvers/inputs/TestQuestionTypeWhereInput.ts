@@ -27,7 +27,7 @@ export class TestQuestionTypeWhereInput {
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
-  question?: StringFilter | undefined;
+  question_name?: StringFilter | undefined;
 
   @TypeGraphQL.Field(_type => AnswerTypeCompositeFilter, {
     nullable: true

@@ -42,7 +42,10 @@
 
 .MainContentAboutUs .lazy-div .ConsoleWindow p {
     height: calc(100% - 20px);
-    width: calc(100% - 25px);
+    width: calc(100% - 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .WelcomContent {

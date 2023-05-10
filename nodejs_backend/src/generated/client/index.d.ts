@@ -38,7 +38,7 @@ export type Tests_id = {
  * 
  */
 export type TestQuestionType = {
-  question: string
+  question_name: string
   answer: AnswerType
 }
 
@@ -1085,7 +1085,7 @@ export namespace Prisma {
 
 
   export type TestQuestionTypeSelect = {
-    question?: boolean
+    question_name?: boolean
     answer?: boolean | AnswerTypeArgs
   }
 
@@ -5975,7 +5975,7 @@ export namespace Prisma {
   }
 
   export type TestQuestionTypeObjectEqualityInput = {
-    question: string
+    question_name: string
     answer: AnswerTypeObjectEqualityInput
   }
 
@@ -6067,7 +6067,7 @@ export namespace Prisma {
   }
 
   export type TestQuestionTypeCreateInput = {
-    question: string
+    question_name: string
     answer: AnswerTypeCreateInput
   }
 
@@ -6215,7 +6215,7 @@ export namespace Prisma {
     AND?: Enumerable<TestQuestionTypeWhereInput>
     OR?: Enumerable<TestQuestionTypeWhereInput>
     NOT?: Enumerable<TestQuestionTypeWhereInput>
-    question?: StringFilter | string
+    question_name?: StringFilter | string
     answer?: XOR<AnswerTypeCompositeFilter, AnswerTypeObjectEqualityInput>
   }
 
@@ -6280,7 +6280,7 @@ export namespace Prisma {
   }
 
   export type TestQuestionTypeUpdateInput = {
-    question?: StringFieldUpdateOperationsInput | string
+    question_name?: StringFieldUpdateOperationsInput | string
     answer?: XOR<AnswerTypeUpdateEnvelopeInput, AnswerTypeCreateInput>
   }
 
