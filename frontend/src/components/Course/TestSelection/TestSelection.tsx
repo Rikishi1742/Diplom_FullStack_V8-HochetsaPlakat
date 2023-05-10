@@ -16,8 +16,6 @@ const TestSelection = (props) => {
         }
     }
 
-    console.log(elementsId)
-
     return (
         <>
             <div>

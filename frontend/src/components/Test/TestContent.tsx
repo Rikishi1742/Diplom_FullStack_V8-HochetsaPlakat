@@ -16,11 +16,14 @@ const TestContent = (props) => {
         </>
     )
 
-    console.log(data.getTest.question)
+    let dataArray = [];
+    const Array = data.getTest.question;
+
+    console.log(Array);
 
     return (
         <div className="Container">
-            <h2>{}</h2>
+            <h2>{dataArray[1]}</h2>
         </div>    
     );
 }
